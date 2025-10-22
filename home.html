@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laman Utama - InnoLink</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #512da8, #1976d2);
+      color: white;
+      text-align: center;
+    }
+    .home-container {
+      margin-top: 100px;
+    }
+    .idea-card {
+      background: rgba(255,255,255,0.2);
+      margin: 20px auto;
+      padding: 20px;
+      width: 60%;
+      border-radius: 15px;
+      transition: transform 0.3s;
+    }
+    .idea-card:hover {
+      transform: scale(1.05);
+    }
+    .logout-btn {
+      background: #d32f2f;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="home-container">
+    <div class="lamp-icon">💡</div>
+    <h1>Selamat Datang ke InnoLink</h1>
+    <p>Laman idea dan inovasi kreatif anda 🌟</p>
+
+    <div class="idea-card">
+      <h3>Smart Home Device</h3>
+      <p>Projek rumah pintar dengan sensor cahaya dan suara.</p>
+    </div>
+
+    <div class="idea-card">
+      <h3>Eco Bottle Reminder</h3>
+      <p>Botol air pintar yang mengingatkan pengguna untuk minum.</p>
+    </div>
+
+    <button class="logout-btn" onclick="window.location.href='index.html'">Log Keluar</button>
+  </div>
+</body>
+</html>
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#8e24aa">

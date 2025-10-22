@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Muat Naik Idea - InnoLink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-body">
+
+  <header class="top-nav">
+    <h2>💡 InnoLink</h2>
+    <div class="nav-right">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='upload.html'">Upload</button>
+      <button onclick="logout()">Log Keluar</button>
+    </div>
+  </header>
+
+  <main class="upload-section">
+    <div class="upload-card">
+      <h1 class="title">Muat Naik Idea Anda</h1>
+
+      <form id="uploadForm">
+        <input type="text" id="ideaTitle" placeholder="Tajuk Idea" required>
+        <textarea id="ideaDesc" placeholder="Huraian Idea" rows="4" required></textarea>
+        <input type="number" id="ideaPrice" placeholder="Harga (RM)" required>
+        <input type="file" id="ideaFile" required>
+        <button type="submit" class="btn-login">Hantar</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+    document.getElementById("uploadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Idea anda berjaya dimuat naik!");
+      window.location.href = "home.html";
+    });
+  </script>
+</body>
+</html>

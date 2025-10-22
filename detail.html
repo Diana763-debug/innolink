@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Butiran Idea - InnoLink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-body">
+
+  <header class="top-nav">
+    <h2>💡 InnoLink</h2>
+    <div class="nav-right">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='upload.html'">Upload</button>
+    </div>
+  </header>
+
+  <main class="detail-content">
+    <h1 id="ideaTitle"></h1>
+    <p class="idea-desc">Ini ialah huraian ringkas tentang idea anda.</p>
+
+    <h3>Komen Pengguna:</h3>
+    <div class="comment-section">
+      <textarea id="userComment" placeholder="Tulis komen anda di sini..."></textarea>
+      <button class="btn-login" onclick="addComment()">Hantar</button>
+      <ul id="commentList"></ul>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("ideaTitle").textContent = localStorage.getItem("ideaTitle") || "Idea Tidak Ditemui";
+
+    function addComment() {
+      const list = document.getElementById("commentList");
+      const txt = document.getElementById("userComment");
+      if (txt.value.trim() !== "") {
+        const li = document.createElement("li");
+        li.textContent = txt.value;
+        list.appendChild(li);
+        txt.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
