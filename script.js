@@ -14,9 +14,8 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
   }
 });
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("sw.js")
-    .then(() => console.log("Service Worker Registered"))
-    .catch((err) => console.log("SW registration failed:", err));
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
+
+
