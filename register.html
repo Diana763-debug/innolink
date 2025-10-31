@@ -1,82 +1,54 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InnoLink - Daftar Akaun</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoLink - Register</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="form-box">
-      <h2>💡 Sertai InnoLink</h2>
-      <p class="subtitle">Cipta akaun untuk berkongsi idea</p>
 
-      <!-- Gambar Profil -->
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>💡 <span class="logo">Join InnoLink</span></h2>
+      <p class="subtitle">Create an account to share your innovative ideas</p>
+
       <div class="profile-upload">
-        <img id="profilePreview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile" />
-        <label for="profilePhoto" class="upload-btn">📸 Muat Naik Gambar</label>
-        <input type="file" id="profilePhoto" accept="image/*" hidden />
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Picture" class="profile-img">
+        <button class="upload-btn">📤 Upload Image</button>
       </div>
 
-      <form onsubmit="return validateRegister()">
-        <label>Nama Penuh</label>
-        <input type="text" id="fullname" placeholder="Masukkan nama penuh" required />
+      <form>
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your full name" required>
 
-        <label>NDP (No. Daftar Pelajar)</label>
-        <input type="text" id="ndp" placeholder="Masukkan NDP anda" required pattern="[A-Za-z0-9]+" title="Hanya huruf dan nombor dibenarkan" />
+        <label>Student ID (NDP)</label>
+        <input type="text" placeholder="Enter your student ID" required>
 
-        <label>Emel</label>
-        <input type="email" id="email" placeholder="Masukkan emel anda" required />
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required>
 
-        <label>Kata Laluan</label>
-        <input type="password" id="password" placeholder="Masukkan kata laluan" required minlength="6" />
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" required>
 
-        <label>Sahkan Kata Laluan</label>
-        <input type="password" id="confirmPassword" placeholder="Ulang kata laluan" required minlength="6" />
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Re-enter your password" required>
 
-        <label class="checkbox">
-          <input type="checkbox" required /> Saya bersetuju dengan 
-          <a href="#">Terma dan Syarat</a> serta <a href="#">Dasar Privasi</a>
-        </label>
+        <div class="checkbox">
+          <input type="checkbox" id="agree" required>
+          <label for="agree">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</label>
+        </div>
 
-        <button class="btn-primary" type="submit">Daftar Akaun</button>
+        <button type="submit" class="btn-primary">Register Account</button>
       </form>
 
-      <p>Sudah mempunyai akaun?</p>
-      <a href="index.html" class="btn-secondary">Log Masuk</a>
-      <footer>© 2024 InnoLink. Platform selamat untuk pelajar.</footer>
+      <div class="links">
+        <span>Already have an account? <a href="index.html">Login</a></span>
+      </div>
+
+      <p class="footer">© 2024 InnoLink. Platform for innovative students.</p>
     </div>
   </div>
 
-  <script>
-    // Preview gambar profil
-    const profilePhoto = document.getElementById('profilePhoto');
-    const profilePreview = document.getElementById('profilePreview');
-
-    profilePhoto.addEventListener('change', function() {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          profilePreview.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Validasi borang daftar
-    function validateRegister() {
-      const pass = document.getElementById('password').value;
-      const confirm = document.getElementById('confirmPassword').value;
-      if (pass !== confirm) {
-        alert('Kata laluan tidak sepadan!');
-        return false;
-      }
-      alert('Pendaftaran berjaya (simulasi).');
-      return false;
-    }
-  </script>
 </body>
 </html>
-
