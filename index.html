@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log Masuk - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
-<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
-<meta name="theme-color" content="#4f8ef7">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnoLink - Log Masuk</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-body">
-  <div class="login-container">
-    <div class="login-card">
-      <div class="lamp-icon">💡</div>
-      <h1 class="title">Selamat Datang ke <span>InnoLink</span></h1>
-      <p class="tagline">Laman Pencarian & Perkongsian Idea Berasaskan Konsep dan Rekacipta</p>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>💡 InnoLink</h2>
+      <p class="subtitle">Platform Perkongsian Idea Inovatif</p>
+      <h3>✨ Log Masuk</h3>
+      <p class="desc">Masukkan maklumat anda untuk meneruskan</p>
 
-      <form id="loginForm">
-        <input type="text" id="nama" placeholder="Nama Penuh" required>
-        <input type="text" id="ndp" placeholder="NDP" required>
-        <input type="email" id="email" placeholder="Emel" required>
-        <input type="password" id="password" placeholder="Kata Laluan" required>
+      <form onsubmit="return validateLogin()">
+        <label>Nama Penuh</label>
+        <input type="text" id="fullname" placeholder="Masukkan nama penuh" required />
 
-        <button type="submit" class="btn-login">Log Masuk</button>
+        <label>NDP (No. Daftar Pelajar)</label>
+        <input type="text" id="ndp" placeholder="Masukkan NDP anda" required pattern="[A-Za-z0-9]+" title="Hanya huruf dan nombor dibenarkan" />
 
-        <div class="link-section">
-          <a href="forgot.html" class="forgot">Lupa Kata Laluan?</a>
-          <p>Belum ada akaun? <a href="register.html" class="register">Daftar Sekarang</a></p>
-        </div>
+        <label>Emel</label>
+        <input type="email" id="email" placeholder="Masukkan emel anda" required />
+
+        <label>Kata Laluan</label>
+        <input type="password" id="password" placeholder="Masukkan kata laluan" required minlength="6" />
+
+        <button class="btn-primary" type="submit">Log Masuk</button>
       </form>
+
+      <a href="forgot.html" class="link">Lupa kata laluan?</a>
+      <p>Belum mempunyai akaun?</p>
+      <a href="register.html" class="btn-secondary">Daftar Sekarang</a>
+
+      <footer>© 2024 InnoLink. Platform untuk pelajar inovatif.</footer>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    function validateLogin() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (!email || !password) {
+        alert('Sila isi semua ruangan dengan betul.');
+        return false;
+      }
+      alert('Log masuk berjaya (simulasi).');
+      return false;
+    }
+  </script>
 </body>
 </html>
+
