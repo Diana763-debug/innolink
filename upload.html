@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Muat Naik Idea - InnoLink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Idea - InnoLink</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="home-body">
+<body class="upload-body">
+  <div class="upload-container">
+    <h2>Share Your Innovative Idea</h2>
+    <form id="uploadForm">
+      <input type="text" id="title" placeholder="Idea Title" required>
+      <textarea id="description" placeholder="Description" required></textarea>
+      <input type="number" id="price" placeholder="Price (RM)" required>
+      <input type="file" id="file" accept=".pdf" required>
+      <button type="submit" class="btn-upload">Upload</button>
+    </form>
+  </div>
 
-  <header class="top-nav">
-    <h2>💡 InnoLink</h2>
-    <div class="nav-right">
-      <button onclick="window.location.href='home.html'">Home</button>
-      <button onclick="window.location.href='upload.html'">Upload</button>
-      <button onclick="logout()">Log Keluar</button>
-    </div>
-  </header>
+  <footer class="bottom-nav">
+    <button onclick="goToHome()">🏠 Home</button>
+    <button onclick="goToUpload()">⬆️ Upload</button>
+    <button onclick="goToProfile()">👤 Profile</button>
+  </footer>
 
-  <main class="upload-section">
-    <div class="upload-card">
-      <h1 class="title">Muat Naik Idea Anda</h1>
-
-      <form id="uploadForm">
-        <input type="text" id="ideaTitle" placeholder="Tajuk Idea" required>
-        <textarea id="ideaDesc" placeholder="Huraian Idea" rows="4" required></textarea>
-        <input type="number" id="ideaPrice" placeholder="Harga (RM)" required>
-        <input type="file" id="ideaFile" required>
-        <button type="submit" class="btn-login">Hantar</button>
-      </form>
-    </div>
-  </main>
-
-  <script>
-    function logout() {
-      window.location.href = "index.html";
-    }
-    document.getElementById("uploadForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("Idea anda berjaya dimuat naik!");
-      window.location.href = "home.html";
-    });
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
