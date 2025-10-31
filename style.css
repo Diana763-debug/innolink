@@ -1,117 +1,163 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 
-.login-body {
-  background: linear-gradient(135deg, #7b1fa2, #512da8, #283593);
-  background-size: 400% 400%;
-  animation: gradientMove 8s ease infinite;
+body {
+  background: linear-gradient(to bottom right, #f7f9fc, #eaf1f9);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.login-card {
-  background: rgba(255, 255, 255, 0.12);
+.form-box {
+  background: #fff;
   padding: 40px;
-  border-radius: 25px;
+  border-radius: 16px;
   width: 380px;
   text-align: center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  backdrop-filter: blur(15px);
-  animation: fadeUp 1.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+h2 {
+  color: #0077ff;
+  font-weight: 700;
 }
 
-.lamp-icon {
-  font-size: 50px;
-  color: #ffeb3b;
-  text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b;
-  animation: flicker 1.8s infinite alternate;
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
 }
 
-@keyframes flicker {
-  from { opacity: 0.85; }
-  to { opacity: 1; }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
 }
 
-.title {
-  color: #fff;
-  font-size: 22px;
-  margin: 10px 0;
-  font-weight: 600;
+label {
+  font-size: 0.9em;
+  color: #333;
+  margin-top: 8px;
 }
 
-.title span {
-  color: #ffeb3b;
-}
-
-.tagline {
-  color: #d1c4e9;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
-
-input {
-  width: 100%;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   outline: none;
-  background: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  transition: all 0.3s;
+  transition: 0.3s;
 }
 
 input:focus {
-  box-shadow: 0 0 10px #90caf9;
-  transform: scale(1.02);
+  border-color: #0077ff;
+  box-shadow: 0 0 5px rgba(0,119,255,0.3);
 }
 
-.btn-login {
-  background: linear-gradient(90deg, #1976d2, #42a5f5);
-  color: white;
+.btn-primary {
+  background: linear-gradient(to right, #0077ff, #00b7ff);
+  color: #fff;
   border: none;
   padding: 12px;
-  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 10px;
   margin-top: 10px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #0077ff;
+  color: #0077ff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #0077ff;
+  color: #fff;
+}
+
+.link {
+  display: block;
+  margin-top: 10px;
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.checkbox {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.checkbox a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.checkbox a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.8em;
+  color: #999;
+}
+
+/* Gambar profil */
+.profile-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-upload img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0077ff;
+  margin-bottom: 10px;
+  background: #f0f0f0;
+}
+
+.upload-btn {
+  background: #0077ff;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.btn-login:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, #42a5f5, #64b5f6);
-}
-
-.link-section {
-  margin-top: 15px;
-}
-
-.forgot, .register {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.forgot:hover, .register:hover {
-  text-decoration: underline;
+.upload-btn:hover {
+  background: #005fcc;
 }
