@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InnoLink - Lupa Kata Laluan</title>
+  <title>InnoLink - Forgot Password?</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container light">
     <div class="form-box">
       <h2>💡 InnoLink</h2>
-      <h3>Lupa Kata Laluan</h3>
-      <p class="desc">Masukkan emel anda untuk menerima arahan reset kata laluan</p>
+      <h3>Forgot Password</h3>
+      <p class="desc">Enter your email to receive password reset instructions</p>
 
       <form onsubmit="return sendReset()">
-        <label>Alamat Emel</label>
+        <label>Emel Address</label></label>
         <input type="email" id="email" placeholder="nama@contoh.com" required />
         <button class="btn-primary" type="submit">Hantar Arahan Reset</button>
       </form>
 
-      <a href="index.html" class="link">← Kembali ke Log Masuk</a>
+      <a href="index.html" class="link">← Return To Login</a>
       <footer>© 2024 InnoLink. Platform Inovasi Malaysia.</footer>
     </div>
   </div>
@@ -28,7 +28,7 @@
     function sendReset() {
       const email = document.getElementById('email').value;
       if (!email) {
-        alert('Sila masukkan emel anda.');
+        alert('Enter Your Emel.');
         return false;
       }
       alert('Arahan reset telah dihantar ke emel (simulasi).');
@@ -37,5 +37,6 @@
   </script>
 </body>
 </html>
+
 
 
