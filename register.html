@@ -1,23 +1,82 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Akaun - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnoLink - Daftar Akaun</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-body">
-  <div class="login-card">
-    <div class="lamp-icon">💡</div>
-    <h1 class="title">Daftar Akaun Baharu</h1>
-    <form>
-      <input type="text" placeholder="Nama Penuh" required>
-      <input type="text" placeholder="NDP" required>
-      <input type="email" placeholder="Emel" required>
-      <input type="password" placeholder="Kata Laluan" required>
-      <button type="submit" class="btn-login">Daftar</button>
-      <p class="link-section">Sudah ada akaun? <a href="index.html" class="register">Log Masuk</a></p>
-    </form>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>💡 Sertai InnoLink</h2>
+      <p class="subtitle">Cipta akaun untuk berkongsi idea</p>
+
+      <!-- Gambar Profil -->
+      <div class="profile-upload">
+        <img id="profilePreview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile" />
+        <label for="profilePhoto" class="upload-btn">📸 Muat Naik Gambar</label>
+        <input type="file" id="profilePhoto" accept="image/*" hidden />
+      </div>
+
+      <form onsubmit="return validateRegister()">
+        <label>Nama Penuh</label>
+        <input type="text" id="fullname" placeholder="Masukkan nama penuh" required />
+
+        <label>NDP (No. Daftar Pelajar)</label>
+        <input type="text" id="ndp" placeholder="Masukkan NDP anda" required pattern="[A-Za-z0-9]+" title="Hanya huruf dan nombor dibenarkan" />
+
+        <label>Emel</label>
+        <input type="email" id="email" placeholder="Masukkan emel anda" required />
+
+        <label>Kata Laluan</label>
+        <input type="password" id="password" placeholder="Masukkan kata laluan" required minlength="6" />
+
+        <label>Sahkan Kata Laluan</label>
+        <input type="password" id="confirmPassword" placeholder="Ulang kata laluan" required minlength="6" />
+
+        <label class="checkbox">
+          <input type="checkbox" required /> Saya bersetuju dengan 
+          <a href="#">Terma dan Syarat</a> serta <a href="#">Dasar Privasi</a>
+        </label>
+
+        <button class="btn-primary" type="submit">Daftar Akaun</button>
+      </form>
+
+      <p>Sudah mempunyai akaun?</p>
+      <a href="index.html" class="btn-secondary">Log Masuk</a>
+      <footer>© 2024 InnoLink. Platform selamat untuk pelajar.</footer>
+    </div>
   </div>
+
+  <script>
+    // Preview gambar profil
+    const profilePhoto = document.getElementById('profilePhoto');
+    const profilePreview = document.getElementById('profilePreview');
+
+    profilePhoto.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          profilePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Validasi borang daftar
+    function validateRegister() {
+      const pass = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+      if (pass !== confirm) {
+        alert('Kata laluan tidak sepadan!');
+        return false;
+      }
+      alert('Pendaftaran berjaya (simulasi).');
+      return false;
+    }
+  </script>
 </body>
 </html>
+
