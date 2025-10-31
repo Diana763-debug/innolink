@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lupa Kata Laluan - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnoLink - Lupa Kata Laluan</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-body">
-  <div class="login-card">
-    <div class="lamp-icon">💡</div>
-    <h1 class="title">Lupa Kata Laluan</h1>
-    <p class="tagline">Masukkan emel anda untuk tetapan semula.</p>
-    <form>
-      <input type="email" placeholder="Alamat Emel" required>
-      <button type="submit" class="btn-login">Hantar Pautan Reset</button>
-      <p class="link-section"><a href="index.html" class="register">Kembali ke Log Masuk</a></p>
-    </form>
+<body>
+  <div class="container light">
+    <div class="form-box">
+      <h2>💡 InnoLink</h2>
+      <h3>Lupa Kata Laluan</h3>
+      <p class="desc">Masukkan emel anda untuk menerima arahan reset kata laluan</p>
+
+      <form onsubmit="return sendReset()">
+        <label>Alamat Emel</label>
+        <input type="email" id="email" placeholder="nama@contoh.com" required />
+        <button class="btn-primary" type="submit">Hantar Arahan Reset</button>
+      </form>
+
+      <a href="index.html" class="link">← Kembali ke Log Masuk</a>
+      <footer>© 2024 InnoLink. Platform Inovasi Malaysia.</footer>
+    </div>
   </div>
+
+  <script>
+    function sendReset() {
+      const email = document.getElementById('email').value;
+      if (!email) {
+        alert('Sila masukkan emel anda.');
+        return false;
+      }
+      alert('Arahan reset telah dihantar ke emel (simulasi).');
+      return false;
+    }
+  </script>
 </body>
 </html>
+
+
