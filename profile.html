@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - InnoLink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="profile-body">
+  <div class="profile-container">
+    <img id="profileImage" src="icons/profile.png" class="profile-pic" alt="Profile">
+    <h2 id="userName">User Name</h2>
+    <p id="userEmail">user@email.com</p>
+
+    <button class="btn-edit" onclick="editProfile()">Edit Profile</button>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </div>
+
+  <footer class="bottom-nav">
+    <button onclick="goToHome()">🏠 Home</button>
+    <button onclick="goToUpload()">⬆️ Upload</button>
+    <button onclick="goToProfile()">👤 Profile</button>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
