@@ -5,22 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home - InnoLink</title>
   <style>
-    body {
+    /* ====== BASIC RESET ====== */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
       background-color: #f4f7fb;
       color: #333;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      min-height: 100vh;
     }
 
+    /* ====== NAVBAR ====== */
     .navbar {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
+      padding: 15px 25px;
       background: #ffffff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
@@ -35,32 +42,45 @@
     }
 
     #searchBar {
-      width: 40%;
+      width: 45%;
       padding: 8px 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
       outline: none;
+      transition: 0.3s;
+    }
+
+    #searchBar:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0,123,255,0.3);
     }
 
     .profile-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       cursor: pointer;
+      transition: transform 0.3s;
     }
 
+    .profile-icon:hover {
+      transform: scale(1.05);
+    }
+
+    /* ====== MAIN CONTENT ====== */
     .content {
-      max-width: 900px;
+      flex: 1;
+      max-width: 1000px;
       width: 100%;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 30px auto 100px auto;
+      padding: 0 20px;
       text-align: center;
     }
 
     .content h2 {
       font-size: 28px;
       color: #222;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .idea-list {
@@ -71,18 +91,31 @@
 
     .idea-card {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       padding: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .idea-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
 
-    footer.bottom-nav {
+    .idea-card h3 {
+      font-size: 20px;
+      color: #007bff;
+      margin-bottom: 8px;
+    }
+
+    .idea-card p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* ====== BOTTOM NAV ====== */
+    .bottom-nav {
       width: 100%;
       display: flex;
       justify-content: space-around;
@@ -91,20 +124,35 @@
       background-color: #ffffff;
       border-top: 1px solid #ddd;
       padding: 12px 0;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
     }
 
-    footer button {
+    .bottom-nav button {
       border: none;
       background: none;
       font-size: 16px;
       cursor: pointer;
       color: #007bff;
-      transition: color 0.3s;
+      font-weight: 500;
+      transition: 0.3s;
     }
 
-    footer button:hover {
+    .bottom-nav button:hover {
       color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 18px;
+      }
+      #searchBar {
+        width: 55%;
+      }
+      .idea-card h3 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -113,31 +161,47 @@
   <header class="navbar">
     <div class="logo">💡 InnoLink</div>
     <input type="text" placeholder="Search ideas..." id="searchBar" />
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-icon" />
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-icon" onclick="goToProfile()" />
   </header>
 
   <main class="content">
     <h2>Latest Ideas</h2>
     <div id="ideaList" class="idea-list">
       <div class="idea-card">
-        <h3>Eco-Friendly Campus</h3>
-        <p>Encouraging students to use digital notebooks to save paper.</p>
+        <h3>Smart Hostel Alert</h3>
+        <p>A web system that helps students send emergency alerts to wardens instantly.</p>
       </div>
       <div class="idea-card">
-        <h3>Smart Attendance System</h3>
-        <p>Using QR codes to mark attendance automatically.</p>
+        <h3>IoT Server Room Monitor</h3>
+        <p>Tracks temperature & humidity with automatic cloud logging for IT labs.</p>
       </div>
       <div class="idea-card">
-        <h3>IoT Garden Monitor</h3>
-        <p>Monitoring soil moisture and plant health in real-time.</p>
+        <h3>Digital Waste Tracker</h3>
+        <p>Monitors campus waste levels using sensors and sends alerts to cleaners.</p>
+      </div>
+      <div class="idea-card">
+        <h3>Eco Energy App</h3>
+        <p>Encourages students to track and reduce energy usage in dorms.</p>
       </div>
     </div>
   </main>
 
   <footer class="bottom-nav">
-    <button onclick="alert('Home Page')">🏠 Home</button>
-    <button onclick="alert('Upload Page')">⬆️ Upload</button>
-    <button onclick="alert('Profile Page')">👤 Profile</button>
+    <button onclick="goToHome()">🏠 Home</button>
+    <button onclick="goToUpload()">⬆️ Upload</button>
+    <button onclick="goToProfile()">👤 Profile</button>
   </footer>
+
+  <script>
+    function goToHome() {
+      window.location.href = "home.html";
+    }
+    function goToUpload() {
+      window.location.href = "upload.html";
+    }
+    function goToProfile() {
+      window.location.href = "profile.html";
+    }
+  </script>
 </body>
 </html>
