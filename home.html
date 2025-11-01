@@ -3,205 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - InnoLink</title>
+  <title>InnoLink - Home</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* ====== BASIC RESET ====== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      background: linear-gradient(135deg, #1e90ff, #5bc0f8);
+      color: #fff;
       font-family: 'Poppins', sans-serif;
-      background-color: #f4f7fb;
-      color: #333;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* ====== NAVBAR ====== */
-    .navbar {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px 25px;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 20px;
-      color: #007bff;
-    }
-
-    #searchBar {
-      width: 45%;
-      padding: 8px 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    #searchBar:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0,123,255,0.3);
-    }
-
-    .profile-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .profile-icon:hover {
-      transform: scale(1.05);
-    }
-
-    /* ====== MAIN CONTENT ====== */
-    .content {
-      flex: 1;
-      max-width: 1000px;
-      width: 100%;
-      margin: 30px auto 100px auto;
-      padding: 0 20px;
+      min-height: 100vh;
+      margin: 0;
       text-align: center;
     }
 
-    .content h2 {
-      font-size: 28px;
-      color: #222;
-      margin-bottom: 25px;
-    }
-
-    .idea-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .idea-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .idea-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    .idea-card h3 {
-      font-size: 20px;
-      color: #007bff;
-      margin-bottom: 8px;
-    }
-
-    .idea-card p {
-      font-size: 15px;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* ====== BOTTOM NAV ====== */
-    .bottom-nav {
+    header {
       width: 100%;
       display: flex;
-      justify-content: space-around;
-      position: fixed;
-      bottom: 0;
-      background-color: #ffffff;
-      border-top: 1px solid #ddd;
-      padding: 12px 0;
-      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+      align-items: center;
+      justify-content: start;
+      padding: 15px 25px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
-    .bottom-nav button {
-      border: none;
-      background: none;
-      font-size: 16px;
-      cursor: pointer;
-      color: #007bff;
-      font-weight: 500;
+    .back-btn {
+      text-decoration: none;
+      color: #fff;
+      font-size: 22px;
+      margin-right: 15px;
       transition: 0.3s;
     }
 
-    .bottom-nav button:hover {
-      color: #0056b3;
-      transform: scale(1.1);
+    .back-btn:hover {
+      color: #ffeb3b;
     }
 
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 600px) {
-      .logo {
-        font-size: 18px;
-      }
-      #searchBar {
-        width: 55%;
-      }
-      .idea-card h3 {
-        font-size: 18px;
-      }
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .logo {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bulb {
+      width: 25px;
+      height: 25px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #ffeb3b;
+      margin-right: 10px;
+    }
+
+    .welcome {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .search-box {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      background: #ffeb3b;
+      color: #333;
+      font-weight: 600;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .pdf-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .pdf-card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .pdf-card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .pdf-card img {
+      width: 40px;
+    }
+
+    .pdf-card h4 {
+      color: #fff;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .divider {
+      width: 80%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      margin: 30px auto;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+    }
+
+    .nav-btn {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      color: #ffeb3b;
     }
   </style>
 </head>
-
 <body>
-  <header class="navbar">
-    <div class="logo">💡 InnoLink</div>
-    <input type="text" placeholder="Search ideas..." id="searchBar" />
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-icon" onclick="goToProfile()" />
+
+  <header>
+    <a href="index.html" class="back-btn">←</a>
+    <span class="title">Home</span>
   </header>
 
-  <main class="content">
-    <h2>Latest Ideas</h2>
-    <div id="ideaList" class="idea-list">
-      <div class="idea-card">
-        <h3>Smart Hostel Alert</h3>
-        <p>A web system that helps students send emergency alerts to wardens instantly.</p>
-      </div>
-      <div class="idea-card">
-        <h3>IoT Server Room Monitor</h3>
-        <p>Tracks temperature & humidity with automatic cloud logging for IT labs.</p>
-      </div>
-      <div class="idea-card">
-        <h3>Digital Waste Tracker</h3>
-        <p>Monitors campus waste levels using sensors and sends alerts to cleaners.</p>
-      </div>
-      <div class="idea-card">
-        <h3>Eco Energy App</h3>
-        <p>Encourages students to track and reduce energy usage in dorms.</p>
-      </div>
+  <div class="logo">
+    <div class="bulb"></div>
+    <span class="welcome">Welcome to InnoLink</span>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for ideas or projects...">
+    <button>🔍</button>
+  </div>
+
+  <div class="pdf-grid">
+    <div class="pdf-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf">
+      <h4>AI Smart Farm</h4>
     </div>
-  </main>
+    <div class="pdf-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf">
+      <h4>Health Monitor</h4>
+    </div>
+    <div class="pdf-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf">
+      <h4>Eco Energy Project</h4>
+    </div>
+    <div class="pdf-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf">
+      <h4>Smart Waste System</h4>
+    </div>
+  </div>
 
-  <footer class="bottom-nav">
-    <button onclick="goToHome()">🏠 Home</button>
-    <button onclick="goToUpload()">⬆️ Upload</button>
-    <button onclick="goToProfile()">👤 Profile</button>
-  </footer>
+  <div class="divider"></div>
 
-  <script>
-    function goToHome() {
-      window.location.href = "home.html";
-    }
-    function goToUpload() {
-      window.location.href = "upload.html";
-    }
-    function goToProfile() {
-      window.location.href = "profile.html";
-    }
-  </script>
+  <nav class="bottom-nav">
+    <a href="home.html" class="nav-btn active">🏠 Home</a>
+    <a href="upload.html" class="nav-btn">⬆️ Upload</a>
+    <a href="profile.html" class="nav-btn">👤 Profile</a>
+  </nav>
+
 </body>
 </html>
