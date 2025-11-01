@@ -5,9 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InnoLink - Register</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .auth-card {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .logo {
+      color: #0078ff;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* Profile Upload */
+    .profile-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #0078ff;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .upload-btn {
+      background: #0078ff;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .upload-btn:hover {
+      background: #005fcc;
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    label {
+      text-align: left;
+      font-size: 13px;
+      color: #333;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #0078ff;
+      box-shadow: 0 0 6px rgba(0,120,255,0.3);
+    }
+
+    .checkbox {
+      text-align: left;
+      font-size: 12px;
+      color: #555;
+      margin-top: 12px;
+    }
+
+    .checkbox a {
+      color: #0078ff;
+      text-decoration: none;
+    }
+
+    .checkbox a:hover {
+      text-decoration: underline;
+    }
+
+    /* Button */
+    .btn-primary {
+      background: #0078ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #005fcc;
+    }
+
+    .links {
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .links a {
+      color: #0078ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
   <div class="auth-container">
     <div class="auth-card">
       <h2>💡 <span class="logo">Join InnoLink</span></h2>
@@ -22,33 +189,4 @@
         <label>Full Name</label>
         <input type="text" placeholder="Enter your full name" required>
 
-        <label>Student ID (NDP)</label>
-        <input type="text" placeholder="Enter your student ID" required>
-
-        <label>Email</label>
-        <input type="email" placeholder="Enter your email" required>
-
-        <label>Password</label>
-        <input type="password" placeholder="Enter your password" required>
-
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Re-enter your password" required>
-
-        <div class="checkbox">
-          <input type="checkbox" id="agree" required>
-          <label for="agree">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</label>
-        </div>
-
-        <button type="submit" class="btn-primary">Register Account</button>
-      </form>
-
-      <div class="links">
-        <span>Already have an account? <a href="index.html">Login</a></span>
-      </div>
-
-      <p class="footer">© 2024 InnoLink. Platform for innovative students.</p>
-    </div>
-  </div>
-
-</body>
-</html>
+        <label>Stud
