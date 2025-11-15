@@ -3,51 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Login</title>
+  <title>InnoLink - Log Masuk</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div class="auth-container">
     <div class="auth-card">
       <h2>💡 <span class="logo">InnoLink</span></h2>
-      <p class="subtitle">A Platform for Sharing Innovative Ideas</p>
+      <p class="subtitle">Platform untuk berkongsi idea inovatif</p>
 
-      <h3>🔐 Login</h3>
-      <p class="instruction">Please enter your details to continue</p>
+      <h3>Log Masuk</h3>
+      <p class="instruction">Masukkan maklumat anda untuk meneruskan</p>
 
       <form id="loginForm">
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your full name" required>
+        <label>Nama Penuh</label>
+        <input type="text" placeholder="Masukkan nama penuh" required>
 
-        <label>Student ID (NDP)</label>
-        <input type="text" placeholder="Enter your student ID" required>
+        <label>NDP</label>
+        <input type="text" placeholder="Masukkan NDP" required>
 
         <label>Email</label>
-        <input type="email" placeholder="Enter your email" required>
+        <input type="email" placeholder="Masukkan email" required>
 
-        <label>Password</label>
-        <input type="password" placeholder="Enter your password" required>
+        <label>Kata Laluan</label>
+        <input type="password" placeholder="Masukkan kata laluan" required>
 
-        <button type="submit" class="btn-primary">Login</button>
+        <button type="submit" class="btn-primary">Log Masuk</button>
       </form>
 
       <div class="links">
-        <a href="forgot.html">Forgot your password?</a><br>
-        <span>Don’t have an account? <a href="register.html">Register Now</a></span>
+        <a href="forgot.html">Lupa kata laluan?</a><br>
+        <span>Belum ada akaun? <a href="register.html">Daftar Sekarang</a></span>
       </div>
 
-      <p class="footer">© 2024 InnoLink. A platform for innovative students.</p>
+      <p class="footer">© 2024 InnoLink. Platform Inovasi Pelajar Malaysia.</p>
     </div>
   </div>
 
-  <script>
-    // Tangkap form submit dan redirect
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // hentikan refresh
-      window.location.href = 'home.html'; // redirect ke home page sebenar
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
