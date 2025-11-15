@@ -4,41 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log Masuk - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="login-bg">
 
-  <div class="login-container">
-    <div class="logo"><div class="bulb"></div></div>
-
-    <h1>Selamat Datang ke <span class="highlight">InnoLink</span></h1>
-    <p class="desc">
-      Laman Pencarian & Perkongsian Idea Berasaskan Konsep dan Rekacipta
-    </p>
-
-    <!-- REMOVED the form submit -->
-    <form id="loginForm" onsubmit="return goHome()">
-      <input type="text" placeholder="Nama Pengguna" required>
-      <input type="text" placeholder="NDP" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Kata Laluan" required>
-
-      <!-- button tetap submit tapi JS control -->
-      <button type="submit">Log Masuk</button>
-    </form>
-
-    <a href="forgot.html" class="forgot">Lupa Kata Laluan?</a>
-    <p class="register">
-      Belum ada akaun? <a href="register.html">Daftar Sekarang</a>
-    </p>
-  </div>
-
-  <script>
-    function goHome() {
-      window.location.href = "index.html";  // redirect ke home page
-      return false; // hentikan form dari reload page
+  <style>
+    /* ======= Global ======= */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-  </script>
 
-</body>
-</html>
+    /* ======= Card Layout ======= */
+    .login-container {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* ======= Logo ======= */
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px auto;
+      border-radius: 50%;
+      background: #0078ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 30px;
+      font-wei
