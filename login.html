@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Masuk - InnoLink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-bg">
+
+  <div class="login-container">
+    <div class="logo"><div class="bulb"></div></div>
+
+    <h1>Selamat Datang ke <span class="highlight">InnoLink</span></h1>
+    <p class="desc">
+      Laman Pencarian & Perkongsian Idea Berasaskan Konsep dan Rekacipta
+    </p>
+
+    <!-- REMOVED the form submit -->
+    <form id="loginForm" onsubmit="return goHome()">
+      <input type="text" placeholder="Nama Pengguna" required>
+      <input type="text" placeholder="NDP" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Kata Laluan" required>
+
+      <!-- button tetap submit tapi JS control -->
+      <button type="submit">Log Masuk</button>
+    </form>
+
+    <a href="forgot.html" class="forgot">Lupa Kata Laluan?</a>
+    <p class="register">
+      Belum ada akaun? <a href="register.html">Daftar Sekarang</a>
+    </p>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "index.html";  // redirect ke home page
+      return false; // hentikan form dari reload page
+    }
+  </script>
+
+</body>
+</html>
