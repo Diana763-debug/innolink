@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Pembayaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-md bg-white p-10 rounded-2xl shadow mx-auto mt-20 text-center">
+
+        <h2 class="text-xl font-bold mb-4">Imbas QR Untuk Membeli</h2>
+
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=bayaran"
+            class="mx-auto mb-6">
+
+        <button onclick="window.history.back()"
+            class="w-full bg-blue-600 text-white p-3 rounded-xl">
+            Kembali
+        </button>
+
+    </div>
+
+</body>
+</html>
