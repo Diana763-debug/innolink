@@ -1,73 +1,40 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoLink - Daftar Akaun</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Daftar Akaun</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-gray-100">
+<body>
+  <div style="max-width:420px;margin:72px auto">
+    <div class="card" style="text-align:center;padding:28px">
+      <div style="font-weight:800;color:var(--brand);font-size:28px">💡 InnoLink</div>
+      <h3 style="margin-top:6px">📝 Daftar Akaun</h3>
+      <p style="color:var(--muted)">Isikan maklumat untuk mendaftar (demo).</p>
 
-    <div class="flex justify-center items-center min-h-screen px-4">
-        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md text-center">
-
-            <h1 class="text-2xl font-semibold mb-2">🔑 Sertai InnoLink</h1>
-            <p class="text-sm text-gray-600 mb-5">Daftar akaun untuk berkongsi idea inovasi anda</p>
-
-            <div class="flex flex-col items-center mb-4">
-                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" 
-                     class="w-20 mb-2 opacity-70">
-                <button class="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700">
-                    Muat Naik Gambar
-                </button>
-            </div>
-
-            <form>
-                <label class="block text-left font-medium mb-1">Nama Penuh</label>
-                <input type="text" placeholder="Masukkan nama penuh"
-                       class="w-full border rounded-lg px-3 py-2 mb-4">
-
-                <label class="block text-left font-medium mb-1">ID Pelajar (NDP)</label>
-                <input type="text" placeholder="Masukkan ID pelajar"
-                       class="w-full border rounded-lg px-3 py-2 mb-4">
-
-                <label class="block text-left font-medium mb-1">Emel</label>
-                <input type="email" placeholder="Masukkan emel"
-                       class="w-full border rounded-lg px-3 py-2 mb-4">
-
-                <label class="block text-left font-medium mb-1">Kata Laluan</label>
-                <input type="password" placeholder="Masukkan kata laluan"
-                       class="w-full border rounded-lg px-3 py-2 mb-4">
-
-                <label class="block text-left font-medium mb-1">Sahkan Kata Laluan</label>
-                <input type="password" placeholder="Masukkan semula kata laluan"
-                       class="w-full border rounded-lg px-3 py-2 mb-4">
-
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" class="mr-2">
-                    <span class="text-sm">
-                        Saya bersetuju dengan 
-                        <a href="#" class="text-blue-600 underline">Terma & Syarat</a> 
-                        dan 
-                        <a href="#" class="text-blue-600 underline">Dasar Privasi</a>.
-                    </span>
-                </div>
-
-                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                    Daftar Akaun
-                </button>
-            </form>
-
-            <p class="mt-4 text-sm">
-                Sudah ada akaun?  
-                <a href="login.html" class="text-blue-600 hover:underline">Log Masuk</a>
-            </p>
-
-            <p class="text-xs mt-6 text-gray-500">
-                © 2024 InnoLink. Platform untuk pelajar inovatif.
-            </p>
-        </div>
+      <div style="margin-top:12px;display:grid;gap:10px;text-align:left">
+        <input id="rname" placeholder="Nama penuh" />
+        <input id="rstudent" placeholder="ID pelajar" />
+        <input id="remail" type="email" placeholder="Emel" />
+        <input id="rpass" type="password" placeholder="Kata laluan" />
+        <input id="rpass2" type="password" placeholder="Sahkan kata laluan" />
+        <button class="btn" onclick="registerUser()">Daftar</button>
+        <a href="login.html">Sudah ada akaun? Log Masuk</a>
+      </div>
     </div>
+  </div>
 
+  <script>
+    function registerUser(){
+      const n=document.getElementById('rname').value.trim();
+      const s=document.getElementById('rstudent').value.trim();
+      const e=document.getElementById('remail').value.trim();
+      const p=document.getElementById('rpass').value;
+      const p2=document.getElementById('rpass2').value;
+      if(!n||!s||!e||!p){ alert('Sila lengkapkan semua medan.'); return; }
+      if(p!==p2){ alert('Kata laluan tidak sepadan.'); return; }
+      localStorage.setItem('userName', n); localStorage.setItem('userID', s); localStorage.setItem('userEmail', e);
+      localStorage.setItem('userRegistered', new Date().toLocaleString());
+      alert('Pendaftaran berjaya (demo).'); location.href='index.html';
+    }
+  </script>
 </body>
 </html>
