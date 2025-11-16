@@ -1,176 +1,56 @@
-
-<!-- InnoLink Full Frontend Pages (HTML Only) -->
-
-<!-- ===================== HOME PAGE (home.html) ===================== -->
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Home</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoLink - Utama</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
 
-  <div class="top-bar">
-    <h2 class="logo">💡 InnoLink</h2>
-    <input type="text" class="search" placeholder="Cari idea...">
-  </div>
+<body class="bg-gray-100">
 
-  <div class="menu">
-    <a href="home.html" class="active">🏠 Home</a>
-    <a href="upload.html">⬆️ Muat Naik</a>
-    <a href="profile.html">👤 Profil</a>
-  </div>
+    <!-- Header -->
+    <div class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">💡 InnoLink</h1>
 
-  <div class="idea-grid">
-    <div class="idea-card">
-      <h3>Idea 1</h3>
-      <p>PDF</p>
-      <a href="idea-details.html" class="btn-primary">Lihat</a>
+        <div class="space-x-4">
+            <a href="home.html" class="text-blue-600 font-semibold">Home</a>
+            <a href="search.html" class="text-blue-600 font-semibold">Cari</a>
+            <a href="upload.html" class="text-blue-600 font-semibold">Upload</a>
+            <a href="profile.html" class="text-blue-600 font-semibold">Profil</a>
+        </div>
     </div>
 
-    <div class="idea-card">
-      <h3>Idea 2</h3>
-      <p>PDF</p>
-      <a href="idea-details.html" class="btn-primary">Lihat</a>
+    <!-- Search Bar -->
+    <div class="max-w-xl mx-auto mt-6">
+        <input type="text" placeholder="Cari idea..."
+            class="w-full border p-3 rounded-xl shadow-sm">
     </div>
-  </div>
+
+    <!-- Idea List -->
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+
+        <a href="idea-details.html" class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition">
+            <h3 class="font-bold text-lg">Idea Rumah Pintar</h3>
+            <p class="text-gray-600">PDF</p>
+            <p class="text-blue-600 font-semibold mt-2">RM 20</p>
+        </a>
+
+        <div class="bg-white p-5 rounded-2xl shadow">
+            <h3 class="font-bold text-lg">Inovasi Pelajar</h3>
+            <p class="text-gray-600">PDF</p>
+            <p class="text-green-600 font-semibold mt-2">Percuma</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow">
+            <h3 class="font-bold text-lg">Mini Automasi</h3>
+            <p class="text-gray-600">PDF</p>
+            <p class="text-blue-600 font-semibold mt-2">RM 10</p>
+        </div>
+
+    </div>
 
 </body>
 </html>
 
-
-<!-- ===================== UPLOAD PAGE (upload.html) ===================== -->
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Muat Naik</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="menu">
-    <a href="home.html">🏠 Home</a>
-    <a href="upload.html" class="active">⬆️ Muat Naik</a>
-    <a href="profile.html">👤 Profil</a>
-  </div>
-
-  <div class="form-container">
-    <h2>Muat Naik Idea Anda</h2>
-
-    <form>
-      <label>Tajuk Idea</label>
-      <input type="text" required>
-
-      <label>Pilih Gambar</label>
-      <input type="file" accept="image/*" required>
-
-      <label>Deskripsi Idea</label>
-      <textarea required></textarea>
-
-      <label>Fail PDF</label>
-      <input type="file" accept="application/pdf" required>
-
-      <button class="btn-primary">Hantar</button>
-    </form>
-  </div>
-
-</body>
-</html>
-
-
-<!-- ===================== PROFILE PAGE (profile.html) ===================== -->
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Profil</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="menu">
-    <a href="home.html">🏠 Home</a>
-    <a href="upload.html">⬆️ Muat Naik</a>
-    <a href="profile.html" class="active">👤 Profil</a>
-  </div>
-
-  <div class="profile-box">
-    <h2>Profil Saya</h2>
-
-    <p><strong>Nama:</strong> User Contoh</p>
-    <p><strong>NDP:</strong> 123456</p>
-    <p><strong>Email:</strong> user@example.com</p>
-
-    <a href="logout.html" class="btn-danger">Log Keluar</a>
-  </div>
-
-</body>
-</html>
-
-
-<!-- ===================== IDEA DETAILS (idea-details.html) ===================== -->
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Butiran Idea</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="menu">
-    <a href="home.html">🏠 Home</a>
-    <a href="upload.html">⬆️ Muat Naik</a>
-    <a href="profile.html">👤 Profil</a>
-  </div>
-
-  <div class="idea-details">
-    <h2>Tajuk Idea</h2>
-
-    <embed src="sample.pdf" width="100%" height="400px" />
-
-    <p><strong>Harga:</strong> RM 20.00</p>
-
-    <a href="qr-pay.html" class="btn-primary">Beli Sekarang</a>
-    <a href="comment.html" class="btn-secondary">Komen</a>
-  </div>
-
-</body>
-</html>
-
-
-<!-- ===================== COMMENT PAGE (comment.html) ===================== -->
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Komen Idea</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="menu">
-    <a href="home.html">🏠 Home</a>
-    <a href="upload.html">⬆️ Muat Naik</a>
-    <a href="profile.html">👤 Profil</a>
-  </div>
-
-  <div class="comment-box">
-    <h2>Komen Pengguna</h2>
-
-    <div class="comment-item">⭐ Sangat menarik!</div>
-    <div class="comment-item">⭐ Idea kreatif!</div>
-
-    <textarea placeholder="Tulis komen..."></textarea>
-    <button class="btn-primary">Hantar</button>
-  </div>
-
-</body>
-</html>
