@@ -1,45 +1,35 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <title>Butiran Idea - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="home-body">
 
-  <header class="top-nav">
-    <h2>💡 InnoLink</h2>
-    <div class="nav-right">
-      <button onclick="window.location.href='home.html'">Home</button>
-      <button onclick="window.location.href='upload.html'">Upload</button>
+<body class="bg-gray-100">
+
+    <div class="max-w-3xl bg-white p-8 rounded-2xl shadow mx-auto mt-10">
+
+        <h2 class="text-xl font-bold mb-4">Idea Rumah Digital</h2>
+
+        <embed src="sample.pdf" type="application/pdf" class="w-full h-96 mb-4" />
+
+        <p class="font-semibold text-blue-600 text-lg">Harga: RM 20</p>
+
+        <button onclick="window.location.href='qr.html'"
+            class="w-full bg-blue-600 text-white p-3 rounded-xl mt-4">
+            Beli Sekarang
+        </button>
+
+        <h3 class="text-lg font-bold mt-8 mb-2">Komen</h3>
+
+        <textarea class="w-full border p-3 rounded-xl mb-3" placeholder="Tulis komen..."></textarea>
+
+        <button class="w-full bg-gray-800 text-white p-2 rounded-xl">Hantar Komen</button>
+
     </div>
-  </header>
 
-  <main class="detail-content">
-    <h1 id="ideaTitle"></h1>
-    <p class="idea-desc">Ini ialah huraian ringkas tentang idea anda.</p>
-
-    <h3>Komen Pengguna:</h3>
-    <div class="comment-section">
-      <textarea id="userComment" placeholder="Tulis komen anda di sini..."></textarea>
-      <button class="btn-login" onclick="addComment()">Hantar</button>
-      <ul id="commentList"></ul>
-    </div>
-  </main>
-
-  <script>
-    document.getElementById("ideaTitle").textContent = localStorage.getItem("ideaTitle") || "Idea Tidak Ditemui";
-
-    function addComment() {
-      const list = document.getElementById("commentList");
-      const txt = document.getElementById("userComment");
-      if (txt.value.trim() !== "") {
-        const li = document.createElement("li");
-        li.textContent = txt.value;
-        list.appendChild(li);
-        txt.value = "";
-      }
-    }
-  </script>
 </body>
 </html>
+
