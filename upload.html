@@ -2,154 +2,69 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>InnoLink - Muat Naik Idea</title>
+  <title>Muat Naik Idea</title>
   <style>
-    body {
-      background: #f0f4ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 40px 20px;
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: white;
-      border-radius: 12px;
-      padding: 30px 40px;
-      width: 360px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-    header {
-      font-weight: 700;
-      font-size: 24px;
-      color: #007bff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-      user-select: none;
-    }
-    header span.emoji { font-size: 28px; }
-    .subtitle {
-      font-size: 13px; color: #666; margin-bottom: 22px; user-select: none;
-    }
-    label {
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: block;
-      user-select: none;
-    }
-    input[type="text"], input[type="number"], textarea, input[type="file"] {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-bottom: 20px;
-      transition: border-color 0.2s ease;
-    }
-    input[type="text"]:focus, input[type="number"]:focus, textarea:focus, input[type="file"]:focus {
-      border-color: #007bff;
-      outline: none;
-    }
-    button.tombol-muatnaik {
-      background: #007bff;
-      border: none;
-      color: white;
-      padding: 12px 0;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-    button.tombol-muatnaik:hover {
-      background: #0056b3;
-    }
-    nav {
-      margin-bottom: 22px;
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-    }
-    nav a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 600;
-      user-select: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 30px auto; }
+    nav a { margin-right: 15px; text-decoration: none; color: #333; }
+    label, input, textarea, button { display: block; width: 100%; margin-bottom: 15px; }
+    button { padding: 10px; }
   </style>
 </head>
 <body>
-  <div class="container" role="main" aria-label="Borang muat naik idea">
-    <header><span class="emoji" aria-hidden="true">💡</span> InnoLink</header>
-    <div class="subtitle">Muat naik idea inovatif anda</div>
-
-    <nav>
-      <a href="home.html">Utama</a>
-      <a href="upload.html" aria-current="page">Muat Naik</a>
-    </nav>
-
-    <form id="borangMuatNaik">
-      <label for="tajukInput">Tajuk Idea</label>
-      <input type="text" id="tajukInput" name="tajuk" placeholder="Masukkan tajuk idea" autocomplete="off" required />
-
-      <label for="deskripsiInput">Deskripsi Idea</label>
-      <textarea id="deskripsiInput" name="deskripsi" rows="4" placeholder="Masukkan deskripsi idea" required></textarea>
-
-      <label for="hargaInput">Harga (RM)</label>
-      <input type="number" id="hargaInput" name="harga" min="0" placeholder="Masukkan harga" required />
-
-      <label for="failInput">Pilih Fail PDF</label>
-      <input type="file" id="failInput" name="pdfFile" accept="application/pdf" required />
-
-      <button type="submit" class="tombol-muatnaik">Muat Naik</button>
-    </form>
-  </div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="upload.html">Upload</a>
+  </nav>
+  
+  <h2>Upload Idea</h2>
+  <form id="uploadForm">
+    <label for="tajuk">Idea Title:</label>
+    <input id="tajuk" name="tajuk" type="text" required />
+    
+    <label for="deskripsi">Idea Description:</label>
+    <textarea id="deskripsi" name="deskripsi" required></textarea>
+    
+    <label for="harga">Price (RM):</label>
+    <input id="harga" name="harga" type="number" required min="0" />
+    
+    <label for="filePdf">Select File (PDF):</label>
+    <input id="filePdf" name="filePdf" type="file" accept="application/pdf" required />
+    
+    <button type="submit">Upload</button>
+  </form>
 
   <script>
-    const user = JSON.parse(localStorage.getItem('user'));
-    if(!user){
-      alert('Sila log masuk terlebih dahulu.');
-      window.location.href = 'login.html';
-    }
-
+    // Ambil data idea dari localStorage atau buat baru
     let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
 
-    document.getElementById('borangMuatNaik').addEventListener('submit', function(e){
+    document.getElementById('uploadForm').addEventListener('submit', function(e){
       e.preventDefault();
 
-      const tajuk = document.getElementById('tajukInput').value.trim();
-      const deskripsi = document.getElementById('deskripsiInput').value.trim();
-      const harga = parseFloat(document.getElementById('hargaInput').value);
-      const failInput = document.getElementById('failInput');
+      const tajuk = document.getElementById('tajuk').value.trim();
+      const deskripsi = document.getElementById('deskripsi').value.trim();
+      const harga = document.getElementById('harga').value;
+      const fileInput = document.getElementById('filePdf');
 
-      if(!tajuk || !deskripsi || !harga || failInput.files.length === 0){
+      if (!tajuk || !deskripsi || !harga || fileInput.files.length === 0) {
         alert('Sila lengkapkan semua maklumat dan pilih fail PDF.');
         return;
       }
-
-      const failURL = URL.createObjectURL(failInput.files[0]);
+      
+      // Buat URL for PDF secara sementara (tidak disimpan pada server)
+      const fileURL = URL.createObjectURL(fileInput.files[0]);
 
       const newIdea = {
         id: ideas.length + 1,
         title: tajuk,
         description: deskripsi,
-        price: harga,
-        pdf: failURL,
+        price: Number(harga),
+        pdf: fileURL
       };
 
       ideas.push(newIdea);
       localStorage.setItem('ideas', JSON.stringify(ideas));
 
-      alert('Berjaya memuat naik idea!');
+      alert('Berjaya muat naik idea!');
       window.location.href = 'home.html';
     });
   </script>
