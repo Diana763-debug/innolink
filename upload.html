@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload Idea - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Idea</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="upload-body">
-  <div class="upload-container">
-    <h2>Share Your Innovative Idea</h2>
-    <form id="uploadForm">
-      <input type="text" id="title" placeholder="Idea Title" required>
-      <textarea id="description" placeholder="Description" required></textarea>
-      <input type="number" id="price" placeholder="Price (RM)" required>
-      <input type="file" id="file" accept=".pdf" required>
-      <button type="submit" class="btn-upload">Upload</button>
-    </form>
-  </div>
 
-  <footer class="bottom-nav">
-    <button onclick="goToHome()">🏠 Home</button>
-    <button onclick="goToUpload()">⬆️ Upload</button>
-    <button onclick="goToProfile()">👤 Profile</button>
-  </footer>
+<body class="bg-gray-100">
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-  <script src="script.js"></script>
+    <!-- Header -->
+    <div class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">💡 InnoLink</h1>
+
+        <div class="space-x-4">
+            <a href="home.html" class="text-blue-600 font-semibold">Home</a>
+            <a href="search.html" class="text-blue-600 font-semibold">Cari</a>
+            <a href="upload.html" class="text-blue-600 font-semibold">Upload</a>
+            <a href="profile.html" class="text-blue-600 font-semibold">Profil</a>
+        </div>
+    </div>
+
+    <div class="max-w-lg bg-white p-8 rounded-2xl shadow mx-auto mt-10">
+
+        <h2 class="text-xl font-bold mb-4">Muat Naik Idea</h2>
+
+        <form>
+            <label class="font-semibold">Tajuk Idea</label>
+            <input type="text" class="w-full border p-3 rounded-xl mb-4" placeholder="Masukkan tajuk idea">
+
+            <label class="font-semibold">Penerangan Idea</label>
+            <textarea class="w-full border p-3 rounded-xl mb-4" rows="4"
+                placeholder="Masukkan penerangan idea"></textarea>
+
+            <label class="font-semibold">Harga</label>
+            <input type="number" class="w-full border p-3 rounded-xl mb-4" placeholder="Contoh: 20">
+
+            <label class="font-semibold">Kategori</label>
+            <select class="w-full border p-3 rounded-xl mb-4">
+                <option>Elektrik</option>
+                <option>IoT</option>
+                <option>Rekaan Projek</option>
+                <option>Teknologi</option>
+            </select>
+
+            <label class="font-semibold">Upload PDF</label>
+            <input type="file" class="w-full border p-3 rounded-xl mb-4">
+
+            <button class="w-full bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700">
+                Upload Idea
+            </button>
+        </form>
+
+    </div>
+
 </body>
 </html>
