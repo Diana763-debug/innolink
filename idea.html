@@ -5,94 +5,91 @@
 </head>
 <body>
   <div class="container">
-    <div class="topbar">
-      <div class="brand">💡 InnoLink</div>
-      <div class="toplinks">
+    <header class="topbar">
+      <div class="brand"><div class="logo">IL</div> InnoLink</div>
+      <nav class="menus">
         <a href="index.html">Home</a>
         <a href="upload.html">Muat Naik</a>
         <a href="profile.html">Profil</a>
-      </div>
-    </div>
+      </nav>
+    </header>
 
-    <div id="ideaWrap" class="card" style="max-width:840px;margin:auto"></div>
+    <main>
+      <div id="ideaWrap" class="card" style="max-width:900px;margin:0 auto"></div>
+    </main>
 
     <div class="footer">© InnoLink</div>
   </div>
 
   <script src="app-data.js"></script>
   <script>
-    function getQuery(name){ const params = new URLSearchParams(location.search); return params.get(name); }
-    const id = getQuery('id');
+    function qs(k){ return new URLSearchParams(location.search).get(k); }
+    const id = qs('id');
     const wrap = document.getElementById('ideaWrap');
-
-    const userIdeas = JSON.parse(localStorage.getItem('userIdeas')||'[]');
-    const allIdeas = userIdeas.concat(DATA.ideas);
-    const idea = allIdeas.find(i=>String(i.id)===String(id)) || allIdeas[0];
+    const all = getAllIdeas();
+    const idea = all.find(x => String(x.id)===String(id)) || all[0];
 
     function render(){
       wrap.innerHTML = `
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div>
-            <h2 style="margin:0">${idea.title}</h2>
-            <p style="color:var(--muted)">${idea.desc}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2 style="margin:0">${idea.title}</h2>
+              <div style="color:var(--muted);margin-top:6px">${idea.desc}</div>
+            </div>
+            <div class="price" style="font-weight:800">RM ${idea.price}</div>
           </div>
 
-          <div class="pdf-preview">${idea.pdfName || 'PDF Contoh'}</div>
+          <div class="pdf-preview">${idea.pdfName}</div>
 
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-            <div style="font-weight:700;font-size:18px">RM ${idea.price}</div>
-            <div style="display:flex;gap:10px">
-              <button class="btn" id="buyBtn">Beli Sekarang</button>
-              <a class="btn ghost" href="${idea.pdfUrl}" download>Muat Turun PDF</a>
-            </div>
+          <div style="display:flex;gap:12px;justify-content:flex-end">
+            <button class="btn" id="buyBtn">Beli Sekarang</button>
+            <a class="btn ghost" href="${idea.pdfUrl}" download>Muat Turun PDF</a>
           </div>
 
           <div class="comments">
             <h4>Komen</h4>
             <div id="commentsList"></div>
-            <textarea id="newComment" placeholder="Tulis komen anda..." style="width:100%;margin-top:8px;padding:8px;border-radius:8px;border:1px solid #eef2ff"></textarea>
-            <div style="display:flex;gap:8px;margin-top:8px">
+            <textarea id="newComment" placeholder="Tulis komen anda..." style="width:100%;margin-top:8px;padding:10px;border-radius:10px;border:1px solid #eef6ff"></textarea>
+            <div style="display:flex;gap:10px;margin-top:8px">
               <button class="btn" id="sendC">Hantar Komen</button>
-              <button class="btn ghost" id="refreshC">Segarkan</button>
+              <button class="btn ghost" id="refreshC">Segar Komen</button>
             </div>
           </div>
         </div>
       `;
 
-      document.getElementById('buyBtn').onclick = ()=> {
-        location.href = `qr.html?amount=${idea.price}&title=${encodeURIComponent(idea.title)}`;
-      };
-
-      document.getElementById('sendC').onclick = ()=> {
-        const text = document.getElementById('newComment').value.trim();
-        if(!text) return alert('Sila taip komen terlebih dahulu.');
-        const key = 'comments_'+idea.id;
-        const arr = JSON.parse(localStorage.getItem(key) || '[]');
-        arr.unshift({text, at: new Date().toLocaleString()});
-        localStorage.setItem(key, JSON.stringify(arr));
-        document.getElementById('newComment').value='';
-        loadComments();
-      };
+      document.getElementById('buyBtn').onclick = ()=> { location.href = `qr.html?amount=${idea.price}&title=${encodeURIComponent(idea.title)}`; };
+      document.getElementById('sendC').onclick = addComment;
       document.getElementById('refreshC').onclick = loadComments;
       loadComments();
     }
 
     function loadComments(){
       const key = 'comments_'+idea.id;
-      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      const arr = JSON.parse(localStorage.getItem(key)||'[]');
       const list = document.getElementById('commentsList');
       list.innerHTML = '';
       if(arr.length===0) list.innerHTML = '<div style="color:var(--muted)">Tiada komen lagi.</div>';
       arr.forEach(c=>{
-        const d = document.createElement('div');
-        d.className='comment';
+        const d=document.createElement('div'); d.className='comment';
         d.innerHTML = `<div style="font-size:13px;color:var(--muted)">${c.at}</div><div style="margin-top:6px">${c.text}</div>`;
         list.appendChild(d);
       });
+    }
+
+    function addComment(){
+      const text = document.getElementById('newComment').value.trim();
+      if(!text) return alert('Sila taip komen terlebih dahulu.');
+      const key = 'comments_'+idea.id;
+      const arr = JSON.parse(localStorage.getItem(key)||'[]');
+      arr.unshift({text, at: new Date().toLocaleString()});
+      localStorage.setItem(key, JSON.stringify(arr));
+      document.getElementById('newComment').value='';
+      loadComments();
     }
 
     render();
   </script>
 </body>
 </html>
-
