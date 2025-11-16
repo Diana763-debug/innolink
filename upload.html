@@ -1,59 +1,157 @@
 <!DOCTYPE html>
 <html lang="ms">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Idea</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InnoLink - Muat Naik Idea</title>
+  <style>
+    body {
+      background: #f0f4ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 40px 20px;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      width: 360px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    header {
+      font-weight: 700;
+      font-size: 24px;
+      color: #007bff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+    header span.emoji { font-size: 28px; }
+    .subtitle {
+      font-size: 13px; color: #666; margin-bottom: 22px; user-select: none;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      user-select: none;
+    }
+    input[type="text"], input[type="number"], textarea, input[type="file"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s ease;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, textarea:focus, input[type="file"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    button.tombol-muatnaik {
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 12px 0;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button.tombol-muatnaik:hover {
+      background: #0056b3;
+    }
+    nav {
+      margin-bottom: 22px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      user-select: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+<body>
+  <div class="container" role="main" aria-label="Borang muat naik idea">
+    <header><span class="emoji" aria-hidden="true">💡</span> InnoLink</header>
+    <div class="subtitle">Muat naik idea inovatif anda</div>
 
-<body class="bg-gray-100">
+    <nav>
+      <a href="home.html">Utama</a>
+      <a href="upload.html" aria-current="page">Muat Naik</a>
+    </nav>
 
-    <!-- Header -->
-    <div class="bg-white shadow p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">💡 InnoLink</h1>
+    <form id="borangMuatNaik">
+      <label for="tajukInput">Tajuk Idea</label>
+      <input type="text" id="tajukInput" name="tajuk" placeholder="Masukkan tajuk idea" autocomplete="off" required />
 
-        <div class="space-x-4">
-            <a href="home.html" class="text-blue-600 font-semibold">Home</a>
-            <a href="search.html" class="text-blue-600 font-semibold">Cari</a>
-            <a href="upload.html" class="text-blue-600 font-semibold">Upload</a>
-            <a href="profile.html" class="text-blue-600 font-semibold">Profil</a>
-        </div>
-    </div>
+      <label for="deskripsiInput">Deskripsi Idea</label>
+      <textarea id="deskripsiInput" name="deskripsi" rows="4" placeholder="Masukkan deskripsi idea" required></textarea>
 
-    <div class="max-w-lg bg-white p-8 rounded-2xl shadow mx-auto mt-10">
+      <label for="hargaInput">Harga (RM)</label>
+      <input type="number" id="hargaInput" name="harga" min="0" placeholder="Masukkan harga" required />
 
-        <h2 class="text-xl font-bold mb-4">Muat Naik Idea</h2>
+      <label for="failInput">Pilih Fail PDF</label>
+      <input type="file" id="failInput" name="pdfFile" accept="application/pdf" required />
 
-        <form>
-            <label class="font-semibold">Tajuk Idea</label>
-            <input type="text" class="w-full border p-3 rounded-xl mb-4" placeholder="Masukkan tajuk idea">
+      <button type="submit" class="tombol-muatnaik">Muat Naik</button>
+    </form>
+  </div>
 
-            <label class="font-semibold">Penerangan Idea</label>
-            <textarea class="w-full border p-3 rounded-xl mb-4" rows="4"
-                placeholder="Masukkan penerangan idea"></textarea>
+  <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(!user){
+      alert('Sila log masuk terlebih dahulu.');
+      window.location.href = 'login.html';
+    }
 
-            <label class="font-semibold">Harga</label>
-            <input type="number" class="w-full border p-3 rounded-xl mb-4" placeholder="Contoh: 20">
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
 
-            <label class="font-semibold">Kategori</label>
-            <select class="w-full border p-3 rounded-xl mb-4">
-                <option>Elektrik</option>
-                <option>IoT</option>
-                <option>Rekaan Projek</option>
-                <option>Teknologi</option>
-            </select>
+    document.getElementById('borangMuatNaik').addEventListener('submit', function(e){
+      e.preventDefault();
 
-            <label class="font-semibold">Upload PDF</label>
-            <input type="file" class="w-full border p-3 rounded-xl mb-4">
+      const tajuk = document.getElementById('tajukInput').value.trim();
+      const deskripsi = document.getElementById('deskripsiInput').value.trim();
+      const harga = parseFloat(document.getElementById('hargaInput').value);
+      const failInput = document.getElementById('failInput');
 
-            <button class="w-full bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700">
-                Upload Idea
-            </button>
-        </form>
+      if(!tajuk || !deskripsi || !harga || failInput.files.length === 0){
+        alert('Sila lengkapkan semua maklumat dan pilih fail PDF.');
+        return;
+      }
 
-    </div>
+      const failURL = URL.createObjectURL(failInput.files[0]);
 
+      const newIdea = {
+        id: ideas.length + 1,
+        title: tajuk,
+        description: deskripsi,
+        price: harga,
+        pdf: failURL,
+      };
+
+      ideas.push(newIdea);
+      localStorage.setItem('ideas', JSON.stringify(ideas));
+
+      alert('Berjaya memuat naik idea!');
+      window.location.href = 'home.html';
+    });
+  </script>
 </body>
 </html>
