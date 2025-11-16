@@ -5,18 +5,16 @@
 </head>
 <body>
   <div class="container">
-    <nav class="nav">
+    <div class="topbar">
       <div class="brand">💡 InnoLink</div>
-      <div>
+      <div class="toplinks">
         <a href="index.html">Home</a>
         <a href="upload.html">Muat Naik</a>
         <a href="profile.html">Profil</a>
       </div>
-    </nav>
-
-    <div id="ideaWrap" class="card" style="max-width:840px;margin:auto">
-      <!-- Content bakal render di sini -->
     </div>
+
+    <div id="ideaWrap" class="card" style="max-width:840px;margin:auto"></div>
 
     <div class="footer">© InnoLink</div>
   </div>
@@ -27,25 +25,21 @@
     const id = getQuery('id');
     const wrap = document.getElementById('ideaWrap');
 
-    // combine DATA with user-uploaded ideas in localStorage
     const userIdeas = JSON.parse(localStorage.getItem('userIdeas')||'[]');
-    const allIdeas = DATA.ideas.concat(userIdeas);
-
+    const allIdeas = userIdeas.concat(DATA.ideas);
     const idea = allIdeas.find(i=>String(i.id)===String(id)) || allIdeas[0];
 
     function render(){
       wrap.innerHTML = `
-        <div style="display:flex;gap:20px;flex-direction:column">
+        <div style="display:flex;flex-direction:column;gap:12px">
           <div>
             <h2 style="margin:0">${idea.title}</h2>
             <p style="color:var(--muted)">${idea.desc}</p>
           </div>
 
-          <div class="pdf-preview">
-            ${idea.pdfName || 'PDF Contoh'}
-          </div>
+          <div class="pdf-preview">${idea.pdfName || 'PDF Contoh'}</div>
 
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
             <div style="font-weight:700;font-size:18px">RM ${idea.price}</div>
             <div style="display:flex;gap:10px">
               <button class="btn" id="buyBtn">Beli Sekarang</button>
@@ -66,7 +60,6 @@
       `;
 
       document.getElementById('buyBtn').onclick = ()=> {
-        // buka halaman QR dengan nilai harga
         location.href = `qr.html?amount=${idea.price}&title=${encodeURIComponent(idea.title)}`;
       };
 
@@ -75,7 +68,7 @@
         if(!text) return alert('Sila taip komen terlebih dahulu.');
         const key = 'comments_'+idea.id;
         const arr = JSON.parse(localStorage.getItem(key) || '[]');
-        arr.push({text, at: new Date().toLocaleString()});
+        arr.unshift({text, at: new Date().toLocaleString()});
         localStorage.setItem(key, JSON.stringify(arr));
         document.getElementById('newComment').value='';
         loadComments();
@@ -102,3 +95,4 @@
   </script>
 </body>
 </html>
+
