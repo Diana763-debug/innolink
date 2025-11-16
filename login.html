@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log Masuk - InnoLink</title>
-  <link rel="stylesheet" href="style.css">
+
   <style>
     body {
       margin: 0;
@@ -59,6 +59,7 @@
       border-color: #0078ff;
       box-shadow: 0 0 6px rgba(0,120,255,0.3);
     }
+
     button {
       background: #0078ff;
       color: white;
@@ -76,12 +77,12 @@
       font-size: 13px;
       display: block;
       text-align: center;
-      text-decoration: none;
     }
-    .forgot { color: #0078ff; }
-    .forgot:hover, .register a:hover { text-decoration: underline; }
+    .forgot { color: #0078ff; text-decoration: none; }
+    .forgot:hover { text-decoration: underline; }
     .register { color: #333; }
     .register a { color: #0078ff; font-weight: 500; text-decoration: none; }
+    .register a:hover { text-decoration: underline; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
@@ -89,37 +90,41 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="login-container">
+
     <div class="logo">💡</div>
 
     <h1>Selamat Datang ke <span class="highlight">InnoLink</span></h1>
-    <p class="desc">
-      Laman Pencarian & Perkongsian Idea Berasaskan Konsep dan Rekacipta
-    </p>
+    <p class="desc">Laman Pencarian & Perkongsian Idea Inovatif</p>
 
-    <!-- Form dengan JS redirect -->
-    <form id="loginForm" onsubmit="return goHome()">
-      <input type="text" placeholder="Nama Pengguna" required>
-      <input type="text" placeholder="NDP" required>
-      <input type="email" placeholder="Email" required>
+    <!-- FORM LOGIN -->
+    <form id="loginForm">
+      <input type="text" placeholder="Nama Penuh" required>
+      <input type="text" placeholder="ID Pelajar (NDP)" required>
+      <input type="email" placeholder="Emel" required>
       <input type="password" placeholder="Kata Laluan" required>
       <button type="submit">Log Masuk</button>
     </form>
 
     <a href="forgot.html" class="forgot">Lupa Kata Laluan?</a>
+
     <p class="register">
-      Belum ada akaun? <a href="register.html">Daftar Sekarang</a>
+      Tiada akaun? <a href="register.html">Daftar Sekarang</a>
     </p>
+
   </div>
 
   <script>
-    function goHome() {
-      window.location.href = "home.html"; // redirect ke home
-      return false; // hentikan reload page
-    }
+    // Redirect selepas log masuk
+    document.getElementById("loginForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      window.location.href = "home.html";  // <-- tukar ke halaman utama
+    });
   </script>
 
 </body>
 </html>
+
