@@ -1,104 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InnoLink - Register</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoLink - Daftar Akaun</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="auth-container">
-    <div class="auth-card">
-      <h2>💡 <span class="logo">Join InnoLink</span></h2>
-      <p class="subtitle">Create an account to share your innovative ideas</p>
+<body class="bg-gray-100">
 
-      <div class="profile-upload">
-        <img id="profilePreview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="profile-img" />
-        <input type="file" id="profilePic" accept="image/*" style="display:none;">
-        <button id="uploadBtn" class="upload-btn">📤 Upload Image</button>
-      </div>
+    <div class="flex justify-center items-center min-h-screen px-4">
+        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md text-center">
 
-      <form id="registerForm">
-        <label>Full Name</label>
-        <input type="text" id="fullName" required>
+            <h1 class="text-2xl font-semibold mb-2">🔑 Sertai InnoLink</h1>
+            <p class="text-sm text-gray-600 mb-5">Daftar akaun untuk berkongsi idea inovasi anda</p>
 
-        <label>Student ID (NDP)</label>
-        <input type="text" id="ndp" required>
+            <div class="flex flex-col items-center mb-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" 
+                     class="w-20 mb-2 opacity-70">
+                <button class="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700">
+                    Muat Naik Gambar
+                </button>
+            </div>
 
-        <label>Email</label>
-        <input type="email" id="email" required>
+            <form>
+                <label class="block text-left font-medium mb-1">Nama Penuh</label>
+                <input type="text" placeholder="Masukkan nama penuh"
+                       class="w-full border rounded-lg px-3 py-2 mb-4">
 
-        <label>Password</label>
-        <input type="password" id="password" required>
+                <label class="block text-left font-medium mb-1">ID Pelajar (NDP)</label>
+                <input type="text" placeholder="Masukkan ID pelajar"
+                       class="w-full border rounded-lg px-3 py-2 mb-4">
 
-        <label>Confirm Password</label>
-        <input type="password" id="confirmPassword" required>
+                <label class="block text-left font-medium mb-1">Emel</label>
+                <input type="email" placeholder="Masukkan emel"
+                       class="w-full border rounded-lg px-3 py-2 mb-4">
 
-        <div class="checkbox">
-          <input type="checkbox" id="agree" required>
-          <label for="agree">I agree to the <a href="#">Terms & Conditions</a>.</label>
+                <label class="block text-left font-medium mb-1">Kata Laluan</label>
+                <input type="password" placeholder="Masukkan kata laluan"
+                       class="w-full border rounded-lg px-3 py-2 mb-4">
+
+                <label class="block text-left font-medium mb-1">Sahkan Kata Laluan</label>
+                <input type="password" placeholder="Masukkan semula kata laluan"
+                       class="w-full border rounded-lg px-3 py-2 mb-4">
+
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" class="mr-2">
+                    <span class="text-sm">
+                        Saya bersetuju dengan 
+                        <a href="#" class="text-blue-600 underline">Terma & Syarat</a> 
+                        dan 
+                        <a href="#" class="text-blue-600 underline">Dasar Privasi</a>.
+                    </span>
+                </div>
+
+                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                    Daftar Akaun
+                </button>
+            </form>
+
+            <p class="mt-4 text-sm">
+                Sudah ada akaun?  
+                <a href="login.html" class="text-blue-600 hover:underline">Log Masuk</a>
+            </p>
+
+            <p class="text-xs mt-6 text-gray-500">
+                © 2024 InnoLink. Platform untuk pelajar inovatif.
+            </p>
         </div>
-
-        <button type="submit" class="btn-primary">Register Account</button>
-      </form>
-
-      <div class="links">
-        <span>Already have an account? <a href="index.html">Login</a></span>
-      </div>
     </div>
-  </div>
 
-  <script type="module">
-    import { app, auth, db, storage } from "./firebase.js";
-    import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
-    import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
-
-    const form = document.getElementById("registerForm");
-    const fileInput = document.getElementById("profilePic");
-    const uploadBtn = document.getElementById("uploadBtn");
-    const profilePreview = document.getElementById("profilePreview");
-    let selectedFile = null;
-
-    uploadBtn.addEventListener("click", () => fileInput.click());
-    fileInput.addEventListener("change", e => {
-      selectedFile = e.target.files[0];
-      profilePreview.src = URL.createObjectURL(selectedFile);
-    });
-
-    form.addEventListener("submit", async e => {
-      e.preventDefault();
-      const name = fullName.value.trim();
-      const ndp = ndp.value.trim();
-      const email = email.value.trim();
-      const pass = password.value.trim();
-      const confirm = confirmPassword.value.trim();
-
-      if (pass !== confirm) return alert("Passwords do not match!");
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-        const user = userCredential.user;
-        let photoURL = "";
-
-        if (selectedFile) {
-          const storageRef = ref(storage, `profiles/${user.uid}.jpg`);
-          await uploadBytes(storageRef, selectedFile);
-          photoURL = await getDownloadURL(storageRef);
-        }
-
-        await updateProfile(user, { displayName: name, photoURL });
-        await setDoc(doc(db, "users", user.uid), {
-          name, ndp, email, photoURL, createdAt: new Date()
-        });
-
-        alert("Registration successful!");
-        window.location.href = "index.html";
-      } catch (err) {
-        alert("Error: " + err.message);
-      }
-    });
-  </script>
 </body>
 </html>
-
