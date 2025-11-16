@@ -2,81 +2,171 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
-  <title>Halaman Utama - Senarai PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InnoLink - Halaman Utama</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; }
-    nav a { margin-right: 15px; text-decoration: none; color: #333; }
-    #searchInput { width: 100%; padding: 8px; margin-bottom: 20px; }
-    .pdf-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
-    .pdf-title { font-weight: bold; }
+    body {
+      background: #f0f4ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 40px 20px;
+      display: flex; flex-direction: column; align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      width: 360px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    header {
+      font-weight: 700; font-size: 24px; color: #007bff;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 6px; user-select: none;
+    }
+    header span.emoji { font-size: 28px; }
+    .subtitle {
+      font-size: 13px; color: #666; margin-bottom: 18px;
+      user-select: none;
+    }
+    input[type="text"] {
+      padding: 10px 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 22px;
+      transition: border-color 0.2s ease;
+    }
+    input[type="text"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .pdf-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+      text-decoration: none;
+      color: #333;
+      display: block;
+    }
+    .pdf-item:hover {
+      box-shadow: 0 0 8px rgba(0,123,255,0.3);
+      border-color: #007bff;
+    }
+    .pdf-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .pdf-thumbnail {
+      font-size: 12px;
+      color: #666;
+      user-select: none;
+    }
+    nav {
+      margin-bottom: 18px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      user-select: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    button.tombol-keluar {
+      margin-top: 12px;
+      background-color: #dc3545;
+      border: none;
+      color: white;
+      padding: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button.tombol-keluar:hover {
+      background-color: #a71d2a;
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="home.html">Home</a>
-    <a href="upload.html">Upload</a>
-  </nav>
+  <div class="container" role="main" aria-label="Senarai idea PDF">
+    <header><span class="emoji" aria-hidden="true">💡</span> InnoLink</header>
+    <div class="subtitle">Platform untuk Berkongsi Idea Inovatif</div>
 
-  <h2>Senarai PDF</h2>
+    <nav>
+      <a href="home.html" aria-current="page">Utama</a>
+      <a href="upload.html">Muat Naik</a>
+    </nav>
 
-  <input type="text" id="searchInput" placeholder="Carian..." />
+    <input id="carianInput" type="text" placeholder="Carian idea..." aria-label="Carian idea" />
+    
+    <div id="senaraiPDF" aria-live="polite"></div>
 
-  <div id="pdfList"></div>
+    <button class="tombol-keluar" id="btnKeluar">Log Keluar</button>
+  </div>
 
   <script>
-    // Senarai contoh idea PDF (boleh tambah/muat naik dari upload.html)
+    // Semak login -> jika tiada user, balik ke login.html
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(!user){
+      alert('Sila log masuk terlebih dahulu.');
+      window.location.href = 'login.html';
+    }
+
     let ideas = JSON.parse(localStorage.getItem('ideas')) || [
-      {
-        id: 1,
-        title: "Reka Bentuk Rumah Kecil",
-        description: "Idea reka bentuk rumah kecil yang ringkas",
-        price: 20,
-        pdf: "https://example.com/sample1.pdf"
-      },
-      {
-        id: 2,
-        title: "Ruang Tamu Moden",
-        description: "Reka bentuk dalaman ruang tamu moden dalam PDF",
-        price: 35,
-        pdf: "https://example.com/sample2.pdf"
-      }
+      {id:1, title:"Reka Bentuk Rumah Kecil", description:"Idea reka bentuk rumah kecil yang ringkas", price:20, pdf:"https://example.com/sample1.pdf"},
+      {id:2, title:"Ruang Tamu Moden", description:"Reka bentuk dalaman ruang tamu moden dalam PDF", price:35, pdf:"https://example.com/sample2.pdf"},
     ];
 
-    const pdfList = document.getElementById('pdfList');
-    const searchInput = document.getElementById('searchInput');
+    const senaraiPDF = document.getElementById('senaraiPDF');
+    const carianInput = document.getElementById('carianInput');
+    const btnKeluar = document.getElementById('btnKeluar');
 
-    function renderList(filter = '') {
-      pdfList.innerHTML = '';
+    function paparSenarai(filter=''){
+      senaraiPDF.innerHTML = '';
       const filtered = ideas.filter(i => i.title.toLowerCase().includes(filter.toLowerCase()));
-      if (filtered.length === 0) {
-        pdfList.innerHTML = '<p>Tiada hasil carian.</p>';
+      if(filtered.length === 0){
+        senaraiPDF.innerHTML = '<p>Tiada hasil carian.</p>';
         return;
       }
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'pdf-item';
-        div.innerHTML = `
-          <a href="detail.html?id=${item.id}">
-            <div class="pdf-title">${item.title}</div>
-            <div>[Gambaran PDF]</div>
-          </a>`;
-        pdfList.appendChild(div);
+      filtered.forEach(item=>{
+        let pautan = document.createElement('a');
+        pautan.href = `detail.html?id=${item.id}`;
+        pautan.className = 'pdf-item';
+        pautan.setAttribute('aria-label', item.title + ', klik untuk lihat butiran');
+        pautan.innerHTML = `<div class="pdf-title">${item.title}</div><div class="pdf-thumbnail">[Templat PDF]</div>`;
+        senaraiPDF.appendChild(pautan);
       });
     }
 
-    renderList();
+    paparSenarai();
 
-    searchInput.addEventListener('input', () => {
-      renderList(searchInput.value);
+    carianInput.addEventListener('input', ()=>paparSenarai(carianInput.value));
+
+    btnKeluar.addEventListener('click', ()=>{
+      localStorage.removeItem('user');
+      alert('Anda sudah log keluar.');
+      window.location.href = 'login.html';
     });
 
-    // Simpan kembali ideas ke localStorage bila halaman dimuatkan supaya data persist
+    // Simpan idea semula ke localStorage semasa tutup tab
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('ideas', JSON.stringify(ideas));
     });
-
-    // Boleh akses ideas dari window supaya upload.html boleh tambah
-    window.ideas = ideas;
   </script>
 </body>
 </html>
