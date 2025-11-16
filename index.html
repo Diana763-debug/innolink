@@ -1,62 +1,204 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>InnoLink - Log Masuk</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reset & simple font */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Card container */
+    .login-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px 40px 40px;
+      width: 360px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Logo and title */
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #007bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .logo span.emoji {
+      font-size: 28px;
+      user-select: none;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* Heading under logo */
+    .login-title {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    .login-title span.emoji {
+      margin-right: 6px;
+    }
+    .login-text {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 22px;
+      user-select: none;
+    }
+
+    /* Input styles */
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"] {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form input[type="password"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    /* Login button */
+    button.login-btn {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 12px 0;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button.login-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Links */
+    .links {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
+    }
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer text */
+    .footer-text {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #999;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="login-card" role="main" aria-label="Login panel">
+    <div class="logo" aria-label="Idea lightbulb icon and InnoLink text">
+      <span class="emoji" aria-hidden="true">💡</span>
+      <span>InnoLink</span>
+    </div>
+    <div class="subtitle">A Platform for Sharing Innovative Ideas</div>
 
-  <div class="auth-container">
-    <div class="auth-card">
+    <div class="login-title" aria-label="Login heading">
+      <span class="emoji" aria-hidden="true">🔒</span> Login
+    </div>
+    <div class="login-text">Please enter your details to continue</div>
 
-      <h2>💡 <span class="logo">InnoLink</span></h2>
-      <p class="subtitle">Platform Perkongsian Idea Inovatif</p>
+    <form id="loginForm" aria-describedby="loginDesc">
+      <input 
+        type="text" 
+        id="fullname" 
+        name="fullname" 
+        placeholder="Enter your full name" 
+        required 
+        autocomplete="name"
+        aria-label="Full Name"
+      />
+      <input 
+        type="text" 
+        id="studentid" 
+        name="studentid" 
+        placeholder="Enter your student ID" 
+        required 
+        autocomplete="username"
+        aria-label="Student ID (NDP)"
+      />
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required 
+        autocomplete="email"
+        aria-label="Email"
+      />
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        placeholder="Enter your password" 
+        required 
+        autocomplete="current-password"
+        aria-label="Password"
+      />
 
-      <h3>🔐 Log Masuk</h3>
-      <p class="instruction">Sila masukkan maklumat anda untuk meneruskan</p>
+      <button class="login-btn" type="submit">Login</button>
+    </form>
 
-      <form id="loginForm">
+    <div class="links">
+      <a href="#" tabindex="0">Forgot your password?</a><br />
+      <span>Don’t have an account? <a href="#" tabindex="0">Register Now</a></span>
+    </div>
 
-        <label>Nama Penuh</label>
-        <input type="text" placeholder="Masukkan nama penuh anda" required>
-
-        <label>ID Pelajar (NDP)</label>
-        <input type="text" placeholder="Masukkan ID pelajar anda" required>
-
-        <label>Emel</label>
-        <input type="email" placeholder="Masukkan emel anda" required>
-
-        <label>Kata Laluan</label>
-        <input type="password" placeholder="Masukkan kata laluan anda" required>
-
-        <button type="submit" class="btn-primary">Log Masuk</button>
-
-      </form>
-
-      <div class="links">
-        <a href="forgot.html">Lupa kata laluan?</a><br>
-        <span>Belum ada akaun? <a href="register.html">Daftar Sekarang</a></span>
-      </div>
-
-      <p class="footer">© 2024 InnoLink. Platform untuk pelajar inovatif.</p>
-
+    <div class="footer-text">
+      © 2024 InnoLink. A platform for innovative students.
     </div>
   </div>
 
   <script>
-    // Tangkap submit form dan redirect
-    const loginForm = document.getElementById('loginForm');
-
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // hentikan reload
-      window.location.href = 'index.html'; // redirect ke home page
+    // Contoh demo submit form
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Login diproses (demo)!');
+      // Tambah logik sebenar di sini jika perlu
     });
   </script>
-
 </body>
 </html>
-
-
-
