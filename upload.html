@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muat Naik Idea</title>
-  <link rel="stylesheet" href="styles.css" />
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Muat Naik Idea</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav>
-    <a href="home.html">Home</a>
-    <a href="upload.html">Muat Naik</a>
-    <a href="search.html">Carian</a>
-    <a href="profile.html">Profil</a>
-    <a href="qr.html">QR Maybank</a>
-  </nav>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">💡 InnoLink</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="upload.html" class="active">Muat Naik</a>
+        <a href="profile.html">Profil</a>
+      </div>
+    </nav>
 
-  <section>
-    <h1>Muat Naik Idea Baharu</h1>
-    <form>
-      <label>Tajuk Idea</label>
-      <input type="text" placeholder="Masukkan tajuk idea" />
+    <div class="card" style="max-width:760px;margin:auto">
+      <h2>📤 Muat Naik Idea</h2>
+      <p style="color:var(--muted)">Isikan maklumat idea anda dan muat naik fail (PDF/gambar).</p>
 
-      <label>Deskripsi</label>
-      <textarea placeholder="Masukkan deskripsi idea"></textarea>
+      <form id="uploadForm">
+        <div class="form-group">
+          <input id="ititle" type="text" placeholder="Tajuk Idea" required />
+          <textarea id="idesc" placeholder="Huraian idea"></textarea>
+          <input id="iprice" type="number" placeholder="Harga (RM)" min="0" />
+          <input id="ifile" type="file" accept=".pdf,image/*" />
+        </div>
+        <button class="btn" type="submit">Muat Naik</button>
+      </form>
 
-      <label>Fail (PDF / Gambar)</label>
-      <input type="file" />
+      <div id="msg" style="margin-top:12px;color:var(--muted)"></div>
+    </div>
 
-      <button type="submit">Hantar Idea</button>
-    </form>
-  </section>
+    <div class="footer">© InnoLink</div>
+  </div>
+
+  <script src="app-data.js"></script>
+  <script>
+    const form = document.getElementById('uploadForm');
+    const msg = document.getElementById('msg');
+    form.onsubmit = (e)=>{
+      e.preventDefault();
+      const it = document.getElementById('ititle').value.trim();
+      const id = document.getElementById('idesc').value.trim();
+      const pr = Number(document.getElementById('iprice').value||0);
+      const f = document.getElementById('ifile').files[0];
+      if(!it || !id){ msg.textContent="Sila isi tajuk dan huraian."; return; }
+      // buat ID rawak
+      const nid = Date.now();
+      const pdfName = f ? f.name : 'sample.pdf';
+      const newIdea = { id:nid, title:it, desc:id, price:pr, pdfName, pdfUrl:'sample.pdf' };
+      saveIdeaLocal(newIdea);
+      msg.textContent = "Idea berjaya dimuat naik (demo). Anda boleh lihat di Home.";
+      form.reset();
+    };
+  </script>
 </body>
 </html>
