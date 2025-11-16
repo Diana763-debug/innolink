@@ -1,48 +1,136 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Profil Saya</title>
-<link rel="stylesheet" href="styles.css" />
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Pengguna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            font-family: 'Inter', sans-serif;
+            background: #eef3ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2{
+            color: #0056ff;
+            font-weight: 700;
+        }
+
+        .profile-img{
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #dfe7ff;
+            margin: 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            color: #4a4a4a;
+            font-weight: bold;
+        }
+
+        .info-box{
+            text-align: left;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        .label{
+            font-weight: 600;
+            color: #333;
+        }
+
+        .value{
+            color: #555;
+            padding-left: 5px;
+        }
+
+        .logout{
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: #ff3b3b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-bar{
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-btn{
+            text-decoration: none;
+            background: #0056ff;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+
 </head>
 <body>
-  <div class="container">
-    <nav class="nav">
-      <div class="brand">💡 InnoLink</div>
-      <div>
-        <a href="index.html">Home</a>
-        <a href="upload.html">Muat Naik</a>
-        <a href="profile.html" class="active">Profil</a>
-      </div>
-    </nav>
 
-    <div class="card" style="max-width:520px;margin:auto">
-      <h2>Profil Saya</h2>
-      <p style="color:var(--muted)">Urus maklumat akaun anda (demo lokal).</p>
+    <div class="container">
 
-      <div class="form-group">
-        <input id="pname" type="text" placeholder="Nama penuh" />
-        <input id="pstudent" type="text" placeholder="ID Pelajar (NDP)" />
-        <input id="pemail" type="email" placeholder="Emel" />
-        <button class="btn" id="saveProfile">Simpan Profil</button>
-        <div id="pmsg" style="color:var(--muted);margin-top:8px"></div>
-      </div>
+        <h2>Profil Anda</h2>
+
+        <div class="profile-img" id="profileIcon">?</div>
+
+        <div class="info-box">
+            <div><span class="label">Nama:</span> <span class="value" id="userName"></span></div>
+            <div><span class="label">ID Pelajar:</span> <span class="value" id="userID"></span></div>
+            <div><span class="label">Email:</span> <span class="value" id="userEmail"></span></div>
+        </div>
+
+        <button class="logout" onclick="logout()">Log Keluar</button>
+
+        <div class="nav-bar">
+            <a class="nav-btn" href="home.html">Home</a>
+            <a class="nav-btn" href="upload.html">Upload</a>
+            <a class="nav-btn" href="profile.html">Profil</a>
+        </div>
     </div>
 
-    <div class="footer">Data disimpan di penyemak imbas (demo).</div>
-  </div>
 
-  <script>
-    // muat & simpan profile demo
-    const pname=document.getElementById('pname'), pstudent=document.getElementById('pstudent'), pemail=document.getElementById('pemail'), pmsg=document.getElementById('pmsg');
-    const stored = JSON.parse(localStorage.getItem('profile')||'{}');
-    if(stored.name) pname.value=stored.name;
-    if(stored.student) pstudent.value=stored.student;
-    if(stored.email) pemail.value=stored.email;
+<script>
+    // Paparkan maklumat user dari localStorage
+    document.getElementById("userName").textContent = localStorage.getItem("userName") || "Tiada data";
+    document.getElementById("userID").textContent = localStorage.getItem("userID") || "Tiada data";
+    document.getElementById("userEmail").textContent = localStorage.getItem("userEmail") || "Tiada data";
 
-    document.getElementById('saveProfile').onclick = ()=>{
-      const obj = { name: pname.value.trim(), student: pstudent.value.trim(), email: pemail.value.trim() };
-      localStorage.setItem('profile', JSON.stringify(obj));
-      pmsg.textContent = 'Profil disimpan (demo dalam penyemak imbas).';
-    };
-  </script>
+    // Letak huruf pertama nama sebagai ikon
+    const name = localStorage.getItem("userName");
+    if(name){
+        document.getElementById("profileIcon").textContent = name.charAt(0).toUpperCase();
+    }
+
+    function logout(){
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+
+</script>
+
 </body>
 </html>
