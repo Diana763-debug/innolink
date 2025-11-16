@@ -5,14 +5,14 @@
 </head>
 <body>
   <div class="container">
-    <nav class="nav">
+    <div class="topbar">
       <div class="brand">💡 InnoLink</div>
-      <div>
+      <div class="toplinks">
         <a href="index.html">Home</a>
         <a href="upload.html" class="active">Muat Naik</a>
         <a href="profile.html">Profil</a>
       </div>
-    </nav>
+    </div>
 
     <div class="card" style="max-width:760px;margin:auto">
       <h2>📤 Muat Naik Idea</h2>
@@ -21,8 +21,8 @@
       <form id="uploadForm">
         <div class="form-group">
           <input id="ititle" type="text" placeholder="Tajuk Idea" required />
-          <textarea id="idesc" placeholder="Huraian idea"></textarea>
           <input id="iprice" type="number" placeholder="Harga (RM)" min="0" />
+          <textarea id="idesc" placeholder="Huraian idea"></textarea>
           <input id="ifile" type="file" accept=".pdf,image/*" />
         </div>
         <button class="btn" type="submit">Muat Naik</button>
@@ -45,14 +45,15 @@
       const pr = Number(document.getElementById('iprice').value||0);
       const f = document.getElementById('ifile').files[0];
       if(!it || !id){ msg.textContent="Sila isi tajuk dan huraian."; return; }
-      // buat ID rawak
       const nid = Date.now();
       const pdfName = f ? f.name : 'sample.pdf';
       const newIdea = { id:nid, title:it, desc:id, price:pr, pdfName, pdfUrl:'sample.pdf' };
       saveIdeaLocal(newIdea);
       msg.textContent = "Idea berjaya dimuat naik (demo). Anda boleh lihat di Home.";
       form.reset();
+      setTimeout(()=>{ location.href='index.html'; }, 900);
     };
   </script>
 </body>
 </html>
+
