@@ -1,27 +1,122 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log Masuk</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>InnoLink — Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
   <div class="container">
-    <h2>🔐 Log Masuk</h2>
-    <p>Sila masukkan maklumat anda untuk meneruskan</p>
+    <nav class="nav">
+      <div class="brand">💡 InnoLink</div>
+      <div>
+        <a href="index.html" class="active">Home</a>
+        <a href="upload.html">Muat Naik</a>
+        <a href="profile.html">Profil</a>
+      </div>
+    </nav>
 
-    <input type="text" placeholder="Nama penuh anda">
-    <input type="text" placeholder="ID pelajar anda">
-    <input type="email" placeholder="Alamat emel anda">
-    <input type="password" placeholder="Kata laluan anda">
+    <div class="layout">
+      <!-- MAIN -->
+      <main>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <h2 style="margin:0">Idea Terkini</h2>
+              <p style="margin:4px 0 0;color:var(--muted)">Terokai idea inovatif pelajar.</p>
+            </div>
+            <div style="width:360px;">
+              <div class="searchBox">
+                <input id="searchInput" placeholder="Cari idea... contoh: 'solar', 'smart'"/>
+                <button class="btn ghost" id="searchBtn">Cari</button>
+              </div>
+            </div>
+          </div>
 
-    <button>Log Masuk</button>
+          <div class="grid" id="cardGrid">
+            <!-- Kad idea akan dirender di sini -->
+          </div>
 
-    <a href="forgot.html">Terlupa kata laluan?</a>
-    <a href="register.html">Belum ada akaun? Daftar Sekarang</a>
+          <div style="margin-top:16px">
+            <h3 style="margin:0 0 8px 0">Idea Rawak</h3>
+            <div id="randomList"></div>
+          </div>
+        </div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="card">
+          <div class="section">
+            <h4>Terus ke</h4>
+            <a href="index.html">Home</a>
+            <a href="upload.html">Muat Naik Idea</a>
+            <a href="profile.html">Profil Saya</a>
+            <a href="qr.html">QR Maybank</a>
+          </div>
+
+          <div class="section">
+            <h4>PDF</h4>
+            <div style="display:grid;gap:8px">
+              <div style="background:#fbfdff;padding:8px;border-radius:8px;border:1px solid #eef2ff">PDF - Dokumentasi</div>
+              <div style="background:#fbfdff;padding:8px;border-radius:8px;border:1px solid #eef2ff">PDF - Manual</div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+
+    <div class="footer">© 2025 InnoLink — Platform berkongsi idea pelajar</div>
   </div>
 
+  <script src="app-data.js"></script>
+  <script>
+    // render grid from DATA
+    const grid = document.getElementById('cardGrid');
+    const randomList = document.getElementById('randomList');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+
+    function renderCards(filter=''){
+      grid.innerHTML = '';
+      const filtered = DATA.ideas.filter(i => (i.title + ' ' + i.desc).toLowerCase().includes(filter.toLowerCase()));
+      filtered.forEach(it=>{
+        const el = document.createElement('div');
+        el.className = 'kad';
+        el.innerHTML = `<div style="height:120px;background:#f7fbff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600">${it.pdfName || 'PDF'}</div>
+          <div class="title">${it.title}</div>
+          <div class="desc">${it.desc}</div>
+          <div class="meta"><div>RM ${it.price}</div><div><button class="btn" onclick="openIdea(${it.id})">Lihat Butiran</button></div></div>`;
+        grid.appendChild(el);
+      });
+      if(filtered.length===0){
+        grid.innerHTML = '<p style="color:var(--muted)">Tiada idea dijumpai.</p>';
+      }
+    }
+
+    function renderRandom(){
+      randomList.innerHTML = '';
+      DATA.random.forEach(r=>{
+        const d = document.createElement('div');
+        d.style.padding='8px';
+        d.style.borderBottom='1px dashed #eef2ff';
+        d.innerHTML = `<strong>${r.title}</strong> — <span style="color:var(--muted)">${r.short}</span>`;
+        randomList.appendChild(d);
+      });
+    }
+
+    function openIdea(id){
+      location.href = `idea.html?id=${id}`;
+    }
+
+    searchBtn.onclick = ()=> renderCards(searchInput.value);
+    searchInput.onkeydown = (e)=>{ if(e.key==='Enter') renderCards(searchInput.value) };
+
+    // init
+    renderCards();
+    renderRandom();
+  </script>
 </body>
 </html>
