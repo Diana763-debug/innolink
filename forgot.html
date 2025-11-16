@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Lupa Kata Laluan</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoLink - Lupa Kata Laluan</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
 
-  <div class="auth-container">
-    <div class="auth-card">
-      <h2>💡 <span class="logo">InnoLink</span></h2>
-      <h3>Lupa Kata Laluan</h3>
-      <p class="instruction">Masukkan emel anda dan pautan reset kata laluan akan dihantar.</p>
+    <div class="flex justify-center items-center min-h-screen px-4">
+        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md text-center">
 
-      <form>
-        <label>Alamat Emel</label>
-        <input type="email" placeholder="nama@example.com" required>
+            <h1 class="text-2xl font-semibold mb-1">🔑 InnoLink</h1>
+            <h2 class="text-lg font-bold mb-2">Lupa Kata Laluan</h2>
 
-        <button type="submit" class="btn-primary">Hantar Pautan Reset</button>
-      </form>
+            <p class="text-sm text-gray-600 mb-6">
+                Masukkan emel anda untuk menerima arahan tetapan semula kata laluan.
+            </p>
 
-      <div class="links">
-        <a href="index.html">← Kembali ke Log Masuk</a>
-      </div>
+            <form>
+                <label class="block text-left text-gray-700 font-medium mb-1">Alamat Emel</label>
+                <input type="email" placeholder="contoh@email.com"
+                    class="w-full border rounded-lg px-3 py-2 mb-5 focus:ring focus:ring-blue-300">
 
-      <p class="footer">© 2024 InnoLink. Platform Inovasi Pelajar Malaysia.</p>
+                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                    Hantar Arahan Tetapan Semula
+                </button>
+            </form>
+
+            <a href="login.html" class="block mt-4 text-sm text-blue-600 hover:underline">
+                ← Kembali ke Log Masuk
+            </a>
+
+            <p class="text-xs mt-6 text-gray-500">
+                © 2024 InnoLink. Platform Inovasi Pelajar Malaysia.
+            </p>
+        </div>
     </div>
-  </div>
 
 </body>
 </html>
+
