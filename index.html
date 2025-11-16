@@ -5,43 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InnoLink - Log Masuk</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ========== Global ========== */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* ========== Card Layout ========== */
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .auth-card {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* ========== Text ========== */
+    .auth-card h2 {
+      margin-bottom: 5px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .logo {
+      color: #0078ff;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .instruction {
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* ========== Form ========== */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    label {
+      text-align: left;
+      font-size: 13px;
+      color: #333;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #0078ff;
+      box-shadow: 0 0 6px rgba(0,120,255,0.3);
+    }
+
+    /* ========== Button ========== */
+    .btn-primary {
+      background: #0078ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #005fcc;
+    }
+
+    /* ========== Links ========== */
+    .links {
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .links a {
+      color: #0078ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      font-size: 12px;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    /* ========== Animation ========== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
+
 <body>
   <div class="auth-container">
     <div class="auth-card">
       <h2>💡 <span class="logo">InnoLink</span></h2>
-      <p class="subtitle">Platform untuk Berkongsi Idea Inovatif</p>
+      <p class="subtitle">Platform Perkongsian Idea Inovatif</p>
 
       <h3>🔐 Log Masuk</h3>
-      <p class="instruction">Sila masukkan maklumat anda untuk meneruskan</p>
+      <p class="instruction">Sila masukkan butiran anda untuk meneruskan</p>
 
-      <form id="loginForm">
+      <form>
         <label>Nama Penuh</label>
-        <input type="text" placeholder="Masukkan nama penuh" required>
+        <input type="text" placeholder="Masukkan nama penuh anda" required>
 
-        <label>ID Pelajar (NDP)</label>
-        <input type="text" placeholder="Masukkan NDP" required>
+        <label>NDP Pelajar</label>
+        <input type="text" placeholder="Masukkan nombor NDP" required>
 
         <label>Email</label>
-        <input type="email" placeholder="Masukkan email" required>
+        <input type="email" placeholder="Masukkan email anda" required>
 
         <label>Kata Laluan</label>
-        <input type="password" placeholder="Masukkan kata laluan" required>
+        <input type="password" placeholder="Masukkan kata laluan anda" required>
 
         <button type="submit" class="btn-primary">Log Masuk</button>
       </form>
 
       <div class="links">
-        <a href="#">Lupa kata laluan?</a><br>
-        <span>Belum ada akaun? <a href="#">Daftar Sekarang</a></span>
+        <a href="forgot.html">Lupa kata laluan?</a><br>
+        <span>Belum mempunyai akaun? <a href="register.html">Daftar Sekarang</a></span>
       </div>
 
-      <p class="footer">© 2024 InnoLink. Platform untuk pelajar inovatif.</p>
+      <p class="footer">© 2024 InnoLink. Platform inovasi pelajar.</p>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
-
 
