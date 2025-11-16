@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="ms">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoLink - Laman Utama</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoLink - Log Masuk</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="bg-gray-100">
+  <div class="auth-container">
+    <div class="auth-card">
 
-    <div class="flex justify-center items-center min-h-screen px-4">
-        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-xl text-center">
+      <h2>💡 <span class="logo">InnoLink</span></h2>
+      <p class="subtitle">Platform Perkongsian Idea Inovatif</p>
 
-            <!-- Logo / Title -->
-            <h1 class="text-3xl font-bold mb-3">🔑 InnoLink</h1>
-            <p class="text-gray-600 mb-6 text-sm">
-                Platform inovasi pelajar Malaysia — kongsi idea anda, bina projek, dan terokai kreativiti.
-            </p>
+      <h3>🔐 Log Masuk</h3>
+      <p class="instruction">Sila masukkan maklumat anda untuk meneruskan</p>
 
-            <!-- Image -->
-            <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" 
-                 class="w-40 mx-auto mb-6 opacity-80">
+      <form id="loginForm">
 
-            <!-- Buttons -->
-            <div class="space-y-4">
-                <a href="login.html"
-                    class="block w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                    Log Masuk
-                </a>
+        <label>Nama Penuh</label>
+        <input type="text" placeholder="Masukkan nama penuh anda" required>
 
-                <a href="register.html"
-                    class="block w-full border border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-50">
-                    Daftar Akaun
-                </a>
-            </div>
+        <label>ID Pelajar (NDP)</label>
+        <input type="text" placeholder="Masukkan ID pelajar anda" required>
 
-            <!-- Footer -->
-            <p class="text-xs text-gray-500 mt-8">
-                © 2024 InnoLink. Platform Inovasi Pelajar Malaysia.
-            </p>
-        </div>
+        <label>Emel</label>
+        <input type="email" placeholder="Masukkan emel anda" required>
+
+        <label>Kata Laluan</label>
+        <input type="password" placeholder="Masukkan kata laluan anda" required>
+
+        <button type="submit" class="btn-primary">Log Masuk</button>
+
+      </form>
+
+      <div class="links">
+        <a href="forgot.html">Lupa kata laluan?</a><br>
+        <span>Belum ada akaun? <a href="register.html">Daftar Sekarang</a></span>
+      </div>
+
+      <p class="footer">© 2024 InnoLink. Platform untuk pelajar inovatif.</p>
+
     </div>
+  </div>
+
+  <script>
+    // Tangkap submit form dan redirect
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // hentikan reload
+      window.location.href = 'index.html'; // redirect ke home page
+    });
+  </script>
 
 </body>
 </html>
