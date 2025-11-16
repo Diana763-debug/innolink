@@ -1,130 +1,39 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log Masuk - InnoLink</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .login-container {
-      background: white;
-      padding: 40px 50px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 100%;
-      max-width: 420px;
-      animation: fadeIn 0.8s ease;
-    }
-
-    .logo {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px auto;
-      border-radius: 50%;
-      background: #0078ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 30px;
-    }
-
-    h1 { font-size: 24px; color: #333; margin-bottom: 5px; }
-    .highlight { color: #0078ff; font-weight: 600; }
-    .desc { font-size: 13px; color: #777; margin-bottom: 25px; }
-
-    form { display: flex; flex-direction: column; }
-    input {
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      text-align: center;
-      outline: none;
-      transition: 0.3s;
-    }
-    input:focus {
-      border-color: #0078ff;
-      box-shadow: 0 0 6px rgba(0,120,255,0.3);
-    }
-
-    button {
-      background: #0078ff;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { background: #005fcc; }
-
-    .forgot, .register {
-      margin-top: 15px;
-      font-size: 13px;
-      display: block;
-      text-align: center;
-    }
-    .forgot { color: #0078ff; text-decoration: none; }
-    .forgot:hover { text-decoration: underline; }
-    .register { color: #333; }
-    .register a { color: #0078ff; font-weight: 500; text-decoration: none; }
-    .register a:hover { text-decoration: underline; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Log Masuk</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+  <div style="max-width:420px;margin:72px auto">
+    <div class="card" style="text-align:center;padding:30px">
+      <div style="font-weight:800;color:var(--brand);font-size:28px">💡 InnoLink</div>
+      <h3 style="margin-top:6px">🔐 Log Masuk</h3>
+      <p style="color:var(--muted)">Sila log masuk untuk mengurus idea anda.</p>
 
-  <div class="login-container">
-
-    <div class="logo">💡</div>
-
-    <h1>Selamat Datang ke <span class="highlight">InnoLink</span></h1>
-    <p class="desc">Laman Pencarian & Perkongsian Idea Inovatif</p>
-
-    <!-- FORM LOGIN -->
-    <form id="loginForm">
-      <input type="text" placeholder="Nama Penuh" required>
-      <input type="text" placeholder="ID Pelajar (NDP)" required>
-      <input type="email" placeholder="Emel" required>
-      <input type="password" placeholder="Kata Laluan" required>
-      <button type="submit">Log Masuk</button>
-    </form>
-
-    <a href="forgot.html" class="forgot">Lupa Kata Laluan?</a>
-
-    <p class="register">
-      Tiada akaun? <a href="register.html">Daftar Sekarang</a>
-    </p>
-
+      <div style="margin-top:12px;display:grid;gap:10px;text-align:left">
+        <input id="name" placeholder="Nama penuh" />
+        <input id="studentId" placeholder="ID pelajar (NDP)" />
+        <input id="email" type="email" placeholder="Emel" />
+        <input id="password" type="password" placeholder="Kata laluan" />
+        <button class="btn" onclick="loginUser()">Log Masuk</button>
+        <a href="forgot.html">Terlupa kata laluan?</a>
+        <a href="register.html">Belum ada akaun? Daftar</a>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Redirect selepas log masuk
-    document.getElementById("loginForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      window.location.href = "home.html";  // <-- tukar ke halaman utama
-    });
+    function loginUser(){
+      const n=document.getElementById('name').value.trim();
+      const sid=document.getElementById('studentId').value.trim();
+      const em=document.getElementById('email').value.trim();
+      if(!n||!sid||!em){ alert('Sila lengkapkan semua medan.'); return; }
+      localStorage.setItem('userName', n);
+      localStorage.setItem('userID', sid);
+      localStorage.setItem('userEmail', em);
+      if(!localStorage.getItem('userRegistered')) localStorage.setItem('userRegistered', new Date().toLocaleString());
+      location.href='index.html';
+    }
   </script>
-
 </body>
 </html>
-
