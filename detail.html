@@ -1,35 +1,198 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Idea Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InnoLink - Butiran Idea</title>
+  <style>
+    body {
+      background: #f0f4ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 40px 20px;
+      display: flex; justify-content: center; align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      width: 360px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    header {
+      font-weight: 700;
+      font-size: 24px;
+      color: #007bff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+    header span.emoji { font-size: 28px; }
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 22px;
+      user-select: none;
+    }
+    nav {
+      margin-bottom: 22px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      user-select: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    iframe.pdf-pengarangan {
+      width: 100%;
+      height: 350px;
+      border: 1px solid #007bff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #222;
+      user-select: none;
+    }
+    p {
+      margin: 6px 0;
+      user-select: text;
+    }
+    p strong {
+      color: #007bff;
+    }
+    button.tombol-beli {
+      margin-top: 10px;
+      padding: 12px 0;
+      background: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button.tombol-beli:hover {
+      background: #0056b3;
+    }
+    .bahagian-komen {
+      margin-top: 30px;
+    }
+    textarea.kotak-komen {
+      width: 100%;
+      height: 80px;
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1.5px solid #ccc;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+    }
+    textarea.kotak-komen:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    button.hantar-komen {
+      margin-top: 10px;
+      padding: 10px 0;
+      width: 100%;
+      background: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button.hantar-komen:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
+<body>
+  <div class="container" role="main" aria-label="Butiran idea">
+    <header><span class="emoji" aria-hidden="true">💡</span> InnoLink</header>
+    <div class="subtitle">Platform untuk Berkongsi Idea Inovatif</div>
 
-<body class="bg-gray-100">
+    <nav>
+      <a href="home.html">Utama</a>
+      <a href="upload.html">Muat Naik</a>
+    </nav>
 
-    <div class="max-w-3xl bg-white p-8 rounded-2xl shadow mx-auto mt-10">
+    <h2 id="tajukIdea">Memuatkan...</h2>
 
-        <h2 class="text-xl font-bold mb-4">Idea Rumah Digital</h2>
+    <iframe id="pdfPaparan" class="pdf-pengarangan" src="" allowfullscreen></iframe>
 
-        <embed src="sample.pdf" type="application/pdf" class="w-full h-96 mb-4" />
+    <p><strong>Deskripsi: </strong><span id="deskripsiIdea"></span></p>
+    <p><strong>Harga: </strong>RM <span id="hargaIdea"></span></p>
 
-        <p class="font-semibold text-blue-600 text-lg">Harga: RM 20</p>
+    <button id="tombolBeli" class="tombol-beli" aria-label="Beli Sekarang">Beli Sekarang</button>
 
-        <button onclick="window.location.href='qr.html'"
-            class="w-full bg-blue-600 text-white p-3 rounded-xl mt-4">
-            Beli Sekarang
-        </button>
-
-        <h3 class="text-lg font-bold mt-8 mb-2">Komen</h3>
-
-        <textarea class="w-full border p-3 rounded-xl mb-3" placeholder="Tulis komen..."></textarea>
-
-        <button class="w-full bg-gray-800 text-white p-2 rounded-xl">Hantar Komen</button>
-
+    <div class="bahagian-komen">
+      <h3>Komen</h3>
+      <textarea id="kotakKomen" class="kotak-komen" placeholder="Tulis komen anda di sini..."></textarea>
+      <button id="hantarKomen" class="hantar-komen">Hantar Komen</button>
     </div>
+  </div>
 
+  <script>
+    // Semak login (dapatkan dari localStorage)
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(!user){
+      alert('Sila log masuk terlebih dahulu.');
+      window.location.href = 'login.html';
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    if(!id){
+      alert('ID idea tidak diberikan!');
+      window.location.href = 'home.html';
+    }
+
+    const ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    const idea = ideas.find(i=>i.id === id);
+
+    if(!idea){
+      alert('Idea tidak dijumpai!');
+      window.location.href = 'home.html';
+    }
+
+    document.getElementById('tajukIdea').innerText = idea.title;
+    document.getElementById('deskripsiIdea').innerText = idea.description;
+    document.getElementById('hargaIdea').innerText = idea.price;
+    document.getElementById('pdfPaparan').src = idea.pdf;
+
+    document.getElementById('tombolBeli').addEventListener('click', ()=>{
+      alert('Butang Beli Sekarang ditekan!');
+    });
+
+    document.getElementById('hantarKomen').addEventListener('click', ()=>{
+      const komen = document.getElementById('kotakKomen').value.trim();
+      if(!komen){
+        alert('Sila tulis komen terlebih dahulu!');
+        return;
+      }
+      alert('Komen dihantar: ' + komen);
+      document.getElementById('kotakKomen').value = '';
+    });
+  </script>
 </body>
 </html>
-
