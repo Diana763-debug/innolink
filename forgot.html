@@ -1,43 +1,30 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoLink - Lupa Kata Laluan</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Terlupa Kata Laluan</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-gray-100">
+<body>
+  <div style="max-width:420px;margin:72px auto">
+    <div class="card" style="text-align:center;padding:28px">
+      <div style="font-weight:800;color:var(--brand);font-size:28px">🔑 Tetapkan Semula Kata Laluan</div>
+      <p style="color:var(--muted)">Masukkan emel untuk pautan reset (demo).</p>
 
-    <div class="flex justify-center items-center min-h-screen px-4">
-        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md text-center">
-
-            <h1 class="text-2xl font-semibold mb-1">🔑 InnoLink</h1>
-            <h2 class="text-lg font-bold mb-2">Lupa Kata Laluan</h2>
-
-            <p class="text-sm text-gray-600 mb-6">
-                Masukkan emel anda untuk menerima arahan tetapan semula kata laluan.
-            </p>
-
-            <form>
-                <label class="block text-left text-gray-700 font-medium mb-1">Alamat Emel</label>
-                <input type="email" placeholder="contoh@email.com"
-                    class="w-full border rounded-lg px-3 py-2 mb-5 focus:ring focus:ring-blue-300">
-
-                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                    Hantar Arahan Tetapan Semula
-                </button>
-            </form>
-
-            <a href="login.html" class="block mt-4 text-sm text-blue-600 hover:underline">
-                ← Kembali ke Log Masuk
-            </a>
-
-            <p class="text-xs mt-6 text-gray-500">
-                © 2024 InnoLink. Platform Inovasi Pelajar Malaysia.
-            </p>
-        </div>
+      <div style="margin-top:12px;display:grid;gap:10px;text-align:left">
+        <input id="femail" type="email" placeholder="Emel anda" />
+        <button class="btn" onclick="sendReset()">Hantar Pautan Reset</button>
+        <a href="login.html">Kembali ke Log Masuk</a>
+      </div>
     </div>
+  </div>
 
+  <script>
+    function sendReset(){
+      const e=document.getElementById('femail').value.trim();
+      if(!e){ alert('Sila masukkan emel'); return; }
+      alert('Pautan reset dihantar (demo).'); location.href='login.html';
+    }
+  </script>
 </body>
 </html>
+
 
