@@ -2,71 +2,33 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muat Naik Idea</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 400px; margin: 30px auto; }
-    nav a { margin-right: 15px; text-decoration: none; color: #333; }
-    label, input, textarea, button { display: block; width: 100%; margin-bottom: 15px; }
-    button { padding: 10px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <nav>
     <a href="home.html">Home</a>
-    <a href="upload.html">Upload</a>
+    <a href="upload.html">Muat Naik</a>
+    <a href="search.html">Carian</a>
+    <a href="profile.html">Profil</a>
+    <a href="qr.html">QR Maybank</a>
   </nav>
-  
-  <h2>Upload Idea</h2>
-  <form id="uploadForm">
-    <label for="tajuk">Idea Title:</label>
-    <input id="tajuk" name="tajuk" type="text" required />
-    
-    <label for="deskripsi">Idea Description:</label>
-    <textarea id="deskripsi" name="deskripsi" required></textarea>
-    
-    <label for="harga">Price (RM):</label>
-    <input id="harga" name="harga" type="number" required min="0" />
-    
-    <label for="filePdf">Select File (PDF):</label>
-    <input id="filePdf" name="filePdf" type="file" accept="application/pdf" required />
-    
-    <button type="submit">Upload</button>
-  </form>
 
-  <script>
-    // Ambil data idea dari localStorage atau buat baru
-    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+  <section>
+    <h1>Muat Naik Idea Baharu</h1>
+    <form>
+      <label>Tajuk Idea</label>
+      <input type="text" placeholder="Masukkan tajuk idea" />
 
-    document.getElementById('uploadForm').addEventListener('submit', function(e){
-      e.preventDefault();
+      <label>Deskripsi</label>
+      <textarea placeholder="Masukkan deskripsi idea"></textarea>
 
-      const tajuk = document.getElementById('tajuk').value.trim();
-      const deskripsi = document.getElementById('deskripsi').value.trim();
-      const harga = document.getElementById('harga').value;
-      const fileInput = document.getElementById('filePdf');
+      <label>Fail (PDF / Gambar)</label>
+      <input type="file" />
 
-      if (!tajuk || !deskripsi || !harga || fileInput.files.length === 0) {
-        alert('Sila lengkapkan semua maklumat dan pilih fail PDF.');
-        return;
-      }
-      
-      // Buat URL for PDF secara sementara (tidak disimpan pada server)
-      const fileURL = URL.createObjectURL(fileInput.files[0]);
-
-      const newIdea = {
-        id: ideas.length + 1,
-        title: tajuk,
-        description: deskripsi,
-        price: Number(harga),
-        pdf: fileURL
-      };
-
-      ideas.push(newIdea);
-      localStorage.setItem('ideas', JSON.stringify(ideas));
-
-      alert('Berjaya muat naik idea!');
-      window.location.href = 'home.html';
-    });
-  </script>
+      <button type="submit">Hantar Idea</button>
+    </form>
+  </section>
 </body>
 </html>
