@@ -1,56 +1,82 @@
 <!DOCTYPE html>
 <html lang="ms">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoLink - Utama</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Halaman Utama - Senarai PDF</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; }
+    nav a { margin-right: 15px; text-decoration: none; color: #333; }
+    #searchInput { width: 100%; padding: 8px; margin-bottom: 20px; }
+    .pdf-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+    .pdf-title { font-weight: bold; }
+  </style>
 </head>
+<body>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="upload.html">Upload</a>
+  </nav>
 
-<body class="bg-gray-100">
+  <h2>Senarai PDF</h2>
 
-    <!-- Header -->
-    <div class="bg-white shadow p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">💡 InnoLink</h1>
+  <input type="text" id="searchInput" placeholder="Carian..." />
 
-        <div class="space-x-4">
-            <a href="home.html" class="text-blue-600 font-semibold">Home</a>
-            <a href="search.html" class="text-blue-600 font-semibold">Cari</a>
-            <a href="upload.html" class="text-blue-600 font-semibold">Upload</a>
-            <a href="profile.html" class="text-blue-600 font-semibold">Profil</a>
-        </div>
-    </div>
+  <div id="pdfList"></div>
 
-    <!-- Search Bar -->
-    <div class="max-w-xl mx-auto mt-6">
-        <input type="text" placeholder="Cari idea..."
-            class="w-full border p-3 rounded-xl shadow-sm">
-    </div>
+  <script>
+    // Senarai contoh idea PDF (boleh tambah/muat naik dari upload.html)
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [
+      {
+        id: 1,
+        title: "Reka Bentuk Rumah Kecil",
+        description: "Idea reka bentuk rumah kecil yang ringkas",
+        price: 20,
+        pdf: "https://example.com/sample1.pdf"
+      },
+      {
+        id: 2,
+        title: "Ruang Tamu Moden",
+        description: "Reka bentuk dalaman ruang tamu moden dalam PDF",
+        price: 35,
+        pdf: "https://example.com/sample2.pdf"
+      }
+    ];
 
-    <!-- Idea List -->
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+    const pdfList = document.getElementById('pdfList');
+    const searchInput = document.getElementById('searchInput');
 
-        <a href="idea-details.html" class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition">
-            <h3 class="font-bold text-lg">Idea Rumah Pintar</h3>
-            <p class="text-gray-600">PDF</p>
-            <p class="text-blue-600 font-semibold mt-2">RM 20</p>
-        </a>
+    function renderList(filter = '') {
+      pdfList.innerHTML = '';
+      const filtered = ideas.filter(i => i.title.toLowerCase().includes(filter.toLowerCase()));
+      if (filtered.length === 0) {
+        pdfList.innerHTML = '<p>Tiada hasil carian.</p>';
+        return;
+      }
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'pdf-item';
+        div.innerHTML = `
+          <a href="detail.html?id=${item.id}">
+            <div class="pdf-title">${item.title}</div>
+            <div>[Gambaran PDF]</div>
+          </a>`;
+        pdfList.appendChild(div);
+      });
+    }
 
-        <div class="bg-white p-5 rounded-2xl shadow">
-            <h3 class="font-bold text-lg">Inovasi Pelajar</h3>
-            <p class="text-gray-600">PDF</p>
-            <p class="text-green-600 font-semibold mt-2">Percuma</p>
-        </div>
+    renderList();
 
-        <div class="bg-white p-5 rounded-2xl shadow">
-            <h3 class="font-bold text-lg">Mini Automasi</h3>
-            <p class="text-gray-600">PDF</p>
-            <p class="text-blue-600 font-semibold mt-2">RM 10</p>
-        </div>
+    searchInput.addEventListener('input', () => {
+      renderList(searchInput.value);
+    });
 
-    </div>
+    // Simpan kembali ideas ke localStorage bila halaman dimuatkan supaya data persist
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem('ideas', JSON.stringify(ideas));
+    });
 
+    // Boleh akses ideas dari window supaya upload.html boleh tambah
+    window.ideas = ideas;
+  </script>
 </body>
 </html>
-
