@@ -1,102 +1,176 @@
 
+<!-- InnoLink Full Frontend Pages (HTML Only) -->
+
+<!-- ===================== HOME PAGE (home.html) ===================== -->
 <!DOCTYPE html>
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Laman Utama</title>
+  <title>InnoLink - Home</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body { margin:0; font-family:"Poppins", sans-serif; background:#eef2f3; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:15px 50px; background:#0078ff; color:white; }
-    header h1 { margin:0; }
-    header nav a { margin-left:20px; color:white; font-weight:500; }
-    .profile { display:flex; align-items:center; cursor:pointer; }
-    .profile img { width:40px; height:40px; border-radius:50%; margin-right:10px; }
-    
-    .home-main { padding:20px 50px; max-width:1200px; margin:0 auto; }
-    .search-bar { display:flex; margin-bottom:20px; }
-    .search-bar input { flex:1; padding:10px; border-radius:8px 0 0 8px; border:1px solid #ccc; outline:none; }
-    .search-bar button { padding:10px 20px; border:none; border-radius:0 8px 8px 0; background:#0078ff; color:white; cursor:pointer; }
-
-    .ideas-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
-    .idea-card { background:white; padding:15px; border-radius:12px; box-shadow:0 3px 6px rgba(0,0,0,0.1); }
-    .idea-card h3 { margin-top:0; }
-    .idea-card p { font-size:14px; color:#555; }
-    .idea-card a, .idea-card button { margin-right:10px; margin-top:10px; text-decoration:none; font-size:14px; }
-    .idea-card button { padding:5px 10px; background:#0078ff; color:white; border:none; border-radius:6px; cursor:pointer; }
-
-    .footer { text-align:center; padding:15px; font-size:12px; color:#999; margin-top:30px; }
-
-    /* QR popup */
-    .qr-popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; }
-    .qr-popup img { width:200px; height:200px; background:white; padding:10px; border-radius:12px; }
-    .qr-popup.active { display:flex; }
-  </style>
 </head>
 <body>
 
-<header>
-  <h1>💡 InnoLink</h1>
-  <nav>
-    <a href="home.html">Home</a>
-    <a href="#">Upload Idea</a>
-    <div class="profile" onclick="toggleProfile()">
-      <img src="assets/profile.png" alt="Profile">
-      <span>Ahmad</span>
-    </div>
-  </nav>
-</header>
-
-<main class="home-main">
-  <!-- Search -->
-  <div class="search-bar">
-    <input type="text" placeholder="Cari idea...">
-    <button>Cari</button>
+  <div class="top-bar">
+    <h2 class="logo">💡 InnoLink</h2>
+    <input type="text" class="search" placeholder="Cari idea...">
   </div>
 
-  <!-- Ideas -->
-  <section class="ideas-list">
+  <div class="menu">
+    <a href="home.html" class="active">🏠 Home</a>
+    <a href="upload.html">⬆️ Muat Naik</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <div class="idea-grid">
     <div class="idea-card">
-      <h3>Robot Pintar</h3>
-      <p>Robot yang boleh membantu kerja rumah dengan AI pintar.</p>
-      <a href="sample.pdf" target="_blank">📄 PDF</a>
-      <button onclick="showQR()">🔗 QR</button>
-      <button onclick="alert('Komen idea ini')">💬 Komen</button>
+      <h3>Idea 1</h3>
+      <p>PDF</p>
+      <a href="idea-details.html" class="btn-primary">Lihat</a>
     </div>
 
     <div class="idea-card">
-      <h3>Penjimatan Air</h3>
-      <p>Alat untuk memantau penggunaan air dan menjimatkan kos.</p>
-      <a href="sample.pdf" target="_blank">📄 PDF</a>
-      <button onclick="showQR()">🔗 QR</button>
-      <button onclick="alert('Komen idea ini')">💬 Komen</button>
+      <h3>Idea 2</h3>
+      <p>PDF</p>
+      <a href="idea-details.html" class="btn-primary">Lihat</a>
     </div>
-  </section>
-</main>
-
-<!-- QR Popup -->
-<div class="qr-popup" id="qrPopup" onclick="hideQR()">
-  <img src="assets/sample-qr.png" alt="QR Code">
-</div>
-
-<footer class="footer">
-  © 2024 InnoLink. Semua hak cipta terpelihara.
-</footer>
-
-<script>
-  function showQR() {
-    document.getElementById("qrPopup").classList.add("active");
-  }
-  function hideQR() {
-    document.getElementById("qrPopup").classList.remove("active");
-  }
-
-  function toggleProfile() {
-    alert("Buka profil pengguna (akan ditambah fungsi sebenar nanti)");
-  }
-</script>
+  </div>
 
 </body>
 </html>
 
+
+<!-- ===================== UPLOAD PAGE (upload.html) ===================== -->
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoLink - Muat Naik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="menu">
+    <a href="home.html">🏠 Home</a>
+    <a href="upload.html" class="active">⬆️ Muat Naik</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <div class="form-container">
+    <h2>Muat Naik Idea Anda</h2>
+
+    <form>
+      <label>Tajuk Idea</label>
+      <input type="text" required>
+
+      <label>Pilih Gambar</label>
+      <input type="file" accept="image/*" required>
+
+      <label>Deskripsi Idea</label>
+      <textarea required></textarea>
+
+      <label>Fail PDF</label>
+      <input type="file" accept="application/pdf" required>
+
+      <button class="btn-primary">Hantar</button>
+    </form>
+  </div>
+
+</body>
+</html>
+
+
+<!-- ===================== PROFILE PAGE (profile.html) ===================== -->
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoLink - Profil</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="menu">
+    <a href="home.html">🏠 Home</a>
+    <a href="upload.html">⬆️ Muat Naik</a>
+    <a href="profile.html" class="active">👤 Profil</a>
+  </div>
+
+  <div class="profile-box">
+    <h2>Profil Saya</h2>
+
+    <p><strong>Nama:</strong> User Contoh</p>
+    <p><strong>NDP:</strong> 123456</p>
+    <p><strong>Email:</strong> user@example.com</p>
+
+    <a href="logout.html" class="btn-danger">Log Keluar</a>
+  </div>
+
+</body>
+</html>
+
+
+<!-- ===================== IDEA DETAILS (idea-details.html) ===================== -->
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoLink - Butiran Idea</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="menu">
+    <a href="home.html">🏠 Home</a>
+    <a href="upload.html">⬆️ Muat Naik</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <div class="idea-details">
+    <h2>Tajuk Idea</h2>
+
+    <embed src="sample.pdf" width="100%" height="400px" />
+
+    <p><strong>Harga:</strong> RM 20.00</p>
+
+    <a href="qr-pay.html" class="btn-primary">Beli Sekarang</a>
+    <a href="comment.html" class="btn-secondary">Komen</a>
+  </div>
+
+</body>
+</html>
+
+
+<!-- ===================== COMMENT PAGE (comment.html) ===================== -->
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komen Idea</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="menu">
+    <a href="home.html">🏠 Home</a>
+    <a href="upload.html">⬆️ Muat Naik</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <div class="comment-box">
+    <h2>Komen Pengguna</h2>
+
+    <div class="comment-item">⭐ Sangat menarik!</div>
+    <div class="comment-item">⭐ Idea kreatif!</div>
+
+    <textarea placeholder="Tulis komen..."></textarea>
+    <button class="btn-primary">Hantar</button>
+  </div>
+
+</body>
+</html>
