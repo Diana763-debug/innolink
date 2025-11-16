@@ -1,181 +1,50 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InnoLink - Log Masuk</title>
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* ========== Global ========== */
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    /* ========== Card Layout ========== */
-    .auth-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .auth-card {
-      background: white;
-      padding: 40px 50px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 100%;
-      max-width: 420px;
-      animation: fadeIn 0.8s ease;
-    }
-
-    /* ========== Text ========== */
-    .auth-card h2 {
-      margin-bottom: 5px;
-      font-size: 28px;
-      color: #333;
-    }
-
-    .logo {
-      color: #0078ff;
-      font-weight: 600;
-    }
-
-    .subtitle {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      color: #222;
-      margin-bottom: 10px;
-    }
-
-    .instruction {
-      color: #777;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    /* ========== Form ========== */
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    label {
-      text-align: left;
-      font-size: 13px;
-      color: #333;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
-
-    input {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    input:focus {
-      border-color: #0078ff;
-      box-shadow: 0 0 6px rgba(0,120,255,0.3);
-    }
-
-    /* ========== Button ========== */
-    .btn-primary {
-      background: #0078ff;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 20px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-primary:hover {
-      background: #005fcc;
-    }
-
-    /* ========== Links ========== */
-    .links {
-      margin-top: 15px;
-      font-size: 13px;
-    }
-
-    .links a {
-      color: #0078ff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .links a:hover {
-      text-decoration: underline;
-    }
-
-    /* ========== Footer ========== */
-    .footer {
-      font-size: 12px;
-      color: #999;
-      margin-top: 20px;
-    }
-
-    /* ========== Animation ========== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoLink - Laman Utama</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <div class="auth-container">
-    <div class="auth-card">
-      <h2>💡 <span class="logo">InnoLink</span></h2>
-      <p class="subtitle">Platform Perkongsian Idea Inovatif</p>
+<body class="bg-gray-100">
 
-      <h3>🔐 Log Masuk</h3>
-      <p class="instruction">Sila masukkan butiran anda untuk meneruskan</p>
+    <div class="flex justify-center items-center min-h-screen px-4">
+        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-xl text-center">
 
-      <form>
-        <label>Nama Penuh</label>
-        <input type="text" placeholder="Masukkan nama penuh anda" required>
+            <!-- Logo / Title -->
+            <h1 class="text-3xl font-bold mb-3">🔑 InnoLink</h1>
+            <p class="text-gray-600 mb-6 text-sm">
+                Platform inovasi pelajar Malaysia — kongsi idea anda, bina projek, dan terokai kreativiti.
+            </p>
 
-        <label>NDP Pelajar</label>
-        <input type="text" placeholder="Masukkan nombor NDP" required>
+            <!-- Image -->
+            <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" 
+                 class="w-40 mx-auto mb-6 opacity-80">
 
-        <label>Email</label>
-        <input type="email" placeholder="Masukkan email anda" required>
+            <!-- Buttons -->
+            <div class="space-y-4">
+                <a href="login.html"
+                    class="block w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                    Log Masuk
+                </a>
 
-        <label>Kata Laluan</label>
-        <input type="password" placeholder="Masukkan kata laluan anda" required>
+                <a href="register.html"
+                    class="block w-full border border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-50">
+                    Daftar Akaun
+                </a>
+            </div>
 
-        <button type="submit" class="btn-primary">Log Masuk</button>
-      </form>
-
-      <div class="links">
-        <a href="forgot.html">Lupa kata laluan?</a><br>
-        <span>Belum mempunyai akaun? <a href="register.html">Daftar Sekarang</a></span>
-      </div>
-
-      <p class="footer">© 2024 InnoLink. Platform inovasi pelajar.</p>
+            <!-- Footer -->
+            <p class="text-xs text-gray-500 mt-8">
+                © 2024 InnoLink. Platform Inovasi Pelajar Malaysia.
+            </p>
+        </div>
     </div>
-  </div>
+
 </body>
 </html>
+
+
 
